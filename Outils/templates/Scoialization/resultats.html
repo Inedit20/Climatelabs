@@ -1,0 +1,1452 @@
+
+
+
+
+
+          {% load static %}
+          {% load i18n %}
+          {% load crispy_forms_tags %}
+          <!DOCTYPE html>
+          <html lang="en">
+          
+          <head>
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <title>Climatelabs CLT</title>
+            <!-- plugins:css -->
+            <link rel="stylesheet" href="{% static 'dash/vendors/feather/feather.css' %}">
+            <link rel="stylesheet" href="{% static 'dash/vendors/ti-icons/css/themify-icons.css' %}">
+            <link rel="stylesheet" href="{% static 'dash/vendors/css/vendor.bundle.base.css' %}">
+            <!-- endinject -->
+            <!-- Plugin css for this page -->
+            <link rel="stylesheet" href="{% static 'dash/vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+            <link rel="stylesheet" href="{% static 'dash/vendors/ti-icons/css/themify-icons.css' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'dash/js/select.dataTables.min.css' %}">
+            <!-- End plugin css for this page -->
+            <!-- inject:css -->
+          
+            <link rel="stylesheet" href="{% static 'dash/css/vertical-layout-light/style.css' %}">
+            <link rel="shortcut icon" href="{% static 'dash/favicon.png' %}" />
+
+
+
+               <!-- jQuery and Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    <!--Jchart-->
+      <!-- endinject -->
+
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script type="text/javascript" src="js/nav.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+ <style>
+#radarChart {
+    background-image: url(http://www.planwallpaper.com/static/images/comic-sunburst-background-o.jpg)
+  }
+  
+
+ </style>   
+
+
+</head>
+          
+        
+          <body>
+            <div class="container-scroller">
+              <!-- partial:partials/_navbar.html -->
+              <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+                <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                  <a class="navbar-brand brand-logo mr-5" href="{% url 'home' %}"><img src="{% static 'dash/logo.svg' %}" class="mr-2" alt="Climatelabs"/></a>
+                  <a class="navbar-brand brand-logo-mini" href="{% url 'home' %}"><img src="{% static 'dash/logo-mini.svg' %}" alt="CLT"/></a>
+                </div>
+                <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                  <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="icon-menu"></span>
+                  </button>
+                  <ul class="navbar-nav mr-lg-2">
+                    <li class="nav-item nav-search d-none d-lg-block">
+                      <div class="input-group">
+                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                          <span class="input-group-text" id="search">
+                           
+                          </span>
+                        </div>
+                        
+                      </div>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav navbar-nav-right">
+                   
+                
+             
+                  </ul>
+                  <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="icon-menu"></span>
+                  </button>
+                </div>
+              </nav>
+              <!-- partial -->
+              <div class="container-fluid page-body-wrapper">
+                <!-- partial:partials/_settings-panel.html -->
+              
+                <div id="right-sidebar" class="settings-panel">
+            
+                </div>
+                <!-- partial -->
+                <!-- partial:partials/_sidebar.html -->
+                <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                  <ul class="nav">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'home' %}">
+                        <i class="icon-grid menu-icon"></i>
+                        <span class="menu-title">{% trans 'Home' %}</span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                        <i class="icon-layout menu-icon"></i>
+                        <span class="menu-title">{% trans 'Evaluation' %}</span>
+                        <i class="menu-arrow"></i>
+                      </a>
+                      <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                          <li class="nav-item"> <a class="nav-link" href="{% url 'equipe' %}">{% trans 'New evaluation' %} </a></li>
+                        
+                    
+                        </ul>
+                      </div>
+                    </li>
+                 
+          
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'doc' %}">
+                        <i class="icon-paper menu-icon"></i>
+                        <span class="menu-title">{% trans 'Documentation' %}</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+                <!-- partial -->
+                <div class="main-panel">
+                  <div class="content-wrapper">
+                    <div class="row">
+                      <div class="col-md-12 grid-margin">
+                        <div class="row">
+                          <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                            <h3 class="font-weight-bold">{% trans 'Competences for Social Innovation Labs' %}</h3>
+                           
+                          </div>
+                          <div class="col-12 col-xl-4">
+                           <div class="justify-content-end d-flex">
+                            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                              <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                               <i class="mdi mdi-calendar"></i> {% trans 'Languages' %}
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                                <a class="dropdown-item" href="#">{% trans 'French' %}</a>
+                                <a class="dropdown-item" href="#">{% trans 'English' %}</a>
+                                <a class="dropdown-item" href="#">{% trans 'Spanish' %}</a>
+                              
+                              </div>
+                            </div>
+                           </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              
+          
+          
+          
+                    
+          
+                    <div class="row">
+                   
+          
+        
+                      <div class="col-md-12 grid-margin stretch-card">
+  
+
+                        <div class="card">
+                          <div class="card-body">
+                      
+                    
+              
+              
+                            <div class="col-md-12">
+                              <div class="card-body">
+                      
+                                <div class="template-demo">
+                                  <button type="button" class="btn btn-inverse-secondary  btn-fw">{% trans 'Team' %}</button>
+                                  <button type="button" class="btn btn-inverse-secondary btn-fw">{% trans 'Profil' %}</button>
+                                  <button type="button" class="btn btn-inverse-secondary btn-fw">{% trans 'Questionnaire ' %}</button>
+                                  <button type="button" class="btn btn-inverse-secondary btn-fw">{% trans 'Roles' %}</button>
+                                  <button type="button" class="btn btn-inverse-success btn-fw">{% trans 'Results' %}</button>
+                                  
+                                
+                                </div>
+                              </div>
+                            </div>
+              
+              
+            
+                      
+                          </div>         
+                        </div>
+                   
+                      
+                      
+                      
+                      
+                      </div>
+                         
+ 
+
+                    </div>
+
+
+
+
+
+
+
+
+<!--------You selected Roles--------------->
+
+
+
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-title">Global Profile of the team "part 1"</p>
+          <p class="font-weight-500">{%  trans 'In the following figure, you have the maximum, minimum and average per variable of your team.' %}</p>
+       
+<!--------------------------->
+<!-----------------Start------------->
+               
+                   
+<canvas id="marksChart"  "></canvas>
+                
+                  
+<script>
+        var marksCanvas = document.getElementById("marksChart");
+        
+// Radar Chart Options
+var radarOptions = {
+
+
+    
+
+    scale: {
+        pointLabels: {
+            fontSize: 12
+        },
+
+        elements: {
+            point: {
+                radius: 20,
+            }
+        },
+
+        ticks: {
+            min: 0,
+            max: 5,
+            fixedStepSize: 1,
+        },
+
+ 
+    },
+    legend: {
+             position: 'bottom'
+    
+  }
+/*
+    legend: {
+        display:false
+    },*/
+
+    //roundStrokes: true
+
+    //Boolean - Whether to animate the chart
+    //animation: true,
+
+    //Number - Number of animation steps
+    // animationSteps: 60,
+
+    //String - Animation easing effect
+    //  animationEasing: "easeOutQuart",
+
+    //Function - Fires when the animation is complete
+    // onAnimationComplete: null
+}
+        var marksData = {
+          labels:           ["Intercluturel.1","Mediation.1","Modération.1", "Moderation.2", "Modération.3","Participation.1", "Participation.2",
+"Technique.1", "Pensée.1","Methode.R1", "Methode.R2", "Methode.C1",  
+"Gestion.1", "Gestion.2","Evaluation.1", "Autogestion.1", "Autogestion.2",
+"Esprit.1", "Esprit.2","Networking.1","Networking.2", "Communication.1", "Communication.2" ],
+          datasets: [  
+          
+          {
+
+           
+            label: "Max",
+            fill: true,
+  backgroundColor: "rgba(0,0,0,0.2)",
+  borderColor: "rgba(0,0,0,1)",
+ 
+  pointBackgroundColor: "rgba(0,0,0,1)",
+ 
+
+             
+        
+            data: ["{{sujets_interculturel_1_max}}","{{sujets_med_max}}","{{sujets_mod_1_max}}", "{{sujets_mod_2_max}}","{{sujets_mod_3_max}}", "{{sujets_participation_1_max}}","{{sujets_participation_2_max}}",
+            "{{sujets_technique_1_max}}","{{sujets_pensee_1_max}}","{{sujets_method_r_1_max}}","{{sujets_method_r_2_max}}","{{sujets_method_c_1_max}}",
+            "{{sujets_gestion_projet_1_max}}","{{sujets_gestion_projet_2_max}}","{{sujets_evaluation_1_max}}","{{sujets_organisation_1_max}}", "{{sujets_organisation_2_max}}",
+            "{{sujets_gestion_esprit_1_max}}","{{sujets_gestion_esprit_2_max}}", "{{sujets_networking_1_max}}", "{{sujets_networking_2_max}}","{{sujets_communication_1_max}}","{{sujets_communication_2_max}}"],
+          
+           
+          
+
+
+           
+          }, 
+          
+          
+        
+                
+          {
+
+            label: "Min",
+            fill: true,
+  backgroundColor: "rgba(255,99,132,0.2)",
+  borderColor: "rgba(255,99,132,1)",
+  pointBorderColor: "#fff",
+  pointBackgroundColor: "rgba(255,99,132,1)",
+  pointBorderColor: "#fff",
+
+             
+        
+            data: ["{{sujets_interculturel_1_min}}","{{sujets_med_min}}","{{sujets_mod_1_min}}", "{{sujets_mod_2_min}}","{{sujets_mod_3_min}}", "{{sujets_participation_1_min}}","{{sujets_participation_2_min}}","{{sujets_technique_1_min}}","{{sujets_pensee_1_min}}","{{sujets_method_r_1_min}}","{{sujets_method_r_2_min}}","{{sujets_method_c_1_min}}","{{sujets_gestion_projet_1_min}}","{{sujets_gestion_projet_2_min}}","{{sujets_evaluation_1_min}}","{{sujets_organisation_1_min}}", "{{sujets_organisation_2_min}}", "{{sujets_gestion_esprit_1_min}}","{{sujets_gestion_esprit_2_min}}", "{{sujets_networking_1_min}}", "{{sujets_networking_2_min}}","{{sujets_communication_1_min}}","{{sujets_communication_2_min}}"],
+
+      
+
+
+
+            }, 
+
+                  
+            {
+
+label: "Mean",
+fill: true,
+  backgroundColor: "rgba(135,206,250,0.2)",
+  borderColor: "rgba(135,206,250,1)",
+  pointBorderColor: "#fff",
+  pointBackgroundColor: "rgba(135,206,250,1)",
+  pointBorderColor: "#fff",
+
+ 
+
+data: ["{{sujets_interculturel_1_avg}}","{{sujets_med_avg}}","{{sujets_mod_1_avg}}", "{{sujets_mod_2_avg}}","{{sujets_mod_3_avg}}", "{{sujets_participation_1_avg}}","{{sujets_participation_2_avg}}",
+"{{sujets_technique_1_avg}}","{{sujets_pensee_1_avg}}","{{sujets_method_r_1_avg}}","{{sujets_method_r_2_avg}}","{{sujets_method_c_1_avg}}",
+"{{sujets_gestion_projet_1_avg}}","{{sujets_gestion_projet_2_avg}}","{{sujets_evaluation_1_avg}}","{{sujets_organisation_1_avg}}", "{{sujets_organisation_2_avg}}", 
+"{{sujets_gestion_esprit_1_avg}}","{{sujets_gestion_esprit_2_avg}}", "{{sujets_networking_1_avg}}", "{{sujets_networking_2_avg}}","{{sujets_communication_1_avg}}","{{sujets_communication_2_avg}}"],
+
+
+
+
+
+}, 
+ 
+       
+        
+        
+         
+        
+        
+        
+        
+        
+        ]
+        };
+        
+        var radarChart = new Chart(marksCanvas, {
+          type: 'radar',
+          data: marksData,
+          options: radarOptions,
+        
+        });
+
+
+</script>
+
+
+<!--------------------------end -->
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+         <div class="d-flex justify-content-between">
+          <p class="card-title">Global Profile of the team "part 2"</p>
+         
+         </div>
+          <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
+          
+
+    <!-----Start------------->
+   
+    <div class="container" id="chart">
+        <canvas id="radarChart_5" ></canvas>
+        </div>
+        <script>
+        //Get the context of the Radar Chart canvas element we want to select
+        var ctx_5 = document.getElementById("radarChart_5").getContext("2d");
+        
+        // Radar Chart Options
+        var radarOptions = {
+        padding: 40,
+        //Boolean - If we show the scale above the chart data
+        scaleOverlay: false,
+        
+        //Boolean - If we want to override with a hard coded scale
+        scaleOverride: false,
+        
+        //** Required if scaleOverride is true **
+        //Number - The number of steps in a hard coded scale
+        scaleSteps: null,
+        //Number - The value jump in the hard coded scale
+        scaleStepWidth: null,
+        //Number - The centre starting value
+        scaleStartValue: null,
+        
+        //Boolean - Whether to show lines for each scale point
+        scaleShowLine: true,
+        
+        //String - Colour of the scale line
+        scaleLineColor: "#999",
+        
+        //Number - Pixel width of the scale line
+        scaleLineWidth: 1,
+        
+        //Boolean - Whether to show labels on the scale
+        scaleShowLabels: false,
+        
+        //Interpolated JS string - can access value
+        scaleLabel: "<%=value%>",
+        
+        //String - Scale label font declaration for the scale label
+        scaleFontFamily: "'Arial'",
+        
+        //Number - Scale label font size in pixels
+        scaleFontSize: 50,
+        
+        //String - Scale label font weight style
+        scaleFontStyle: "normal",
+        
+        //String - Scale label font colour
+        scaleFontColor: "#666",
+        
+        //Boolean - Show a backdrop to the scale label
+        scaleShowLabelBackdrop: true,
+        
+        //String - The colour of the label backdrop
+        scaleBackdropColor: "rgba(255,255,255,0.75)",
+        
+        //Number - The backdrop padding above & below the label in pixels
+        scaleBackdropPaddingY: 2,
+        
+        //Number - The backdrop padding to the side of the label in pixels
+        scaleBackdropPaddingX: 2,
+        
+        //Boolean - Whether we show the angle lines out of the radar
+        angleShowLineOut: true,
+        
+        //String - Colour of the angle line
+        angleLineColor: "rgba(255,255,255,0.3)",
+        
+        //Number - Pixel width of the angle line
+        angleLineWidth: 1,
+        
+        //String - Point label font declaration
+        pointLabelFontFamily: "'Arial'",
+        
+        //String - Point label font weight
+        pointLabelFontStyle: "normal",
+        
+        //Number - Point label font size in pixels
+        pointLabelFontSize: 50,
+        
+        //String - Point label font colour
+        pointLabelFontColor: "#EFEFEF",
+        
+        //Boolean - Whether to show a dot for each point
+        pointDot: true,
+        
+        //Number - Pixel width of point dot stroke
+        pointDotStrokeWidth: 4,
+        
+        //Boolean - Whether to show a stroke for datasets
+        datasetStroke: true,
+        
+        //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+        pointHitDetectionRadius: 20,
+        
+        //Number - Pixel width of dataset stroke
+        datasetStrokeWidth: 10,
+        
+        scale: {
+        pointLabels: {
+         fontSize: 12
+        },
+        
+        elements: {
+         point: {
+             radius: 20,
+         }
+        },
+        
+        ticks: {
+         min: 0,
+         max: 5,
+         fixedStepSize: 1,
+        }
+        },
+        /*
+        legend: {
+        display:false
+        },*/
+        
+        //roundStrokes: true
+        
+        //Boolean - Whether to animate the chart
+        //animation: true,
+        
+        //Number - Number of animation steps
+        // animationSteps: 60,
+        
+        //String - Animation easing effect
+        //  animationEasing: "easeOutQuart",
+        
+        //Function - Fires when the animation is complete
+        // onAnimationComplete: null
+        }
+        
+        var width = chart.offsetWidth / 2.35;
+        var height = chart.offsetHeight * 2;
+        
+        //gradient
+        var gradient = ctx_5.createRadialGradient(width, height, 0, width, height, width / 2);
+        gradient.addColorStop(0, 'rgb(75, 73, 172)');
+        gradient.addColorStop(1, 'rgb(75, 73, 172)');
+        
+        //gradient
+        var redGradient = ctx_5.createRadialGradient(width, height, 0, width, height, width / 2);
+        redGradient.addColorStop(0, 'rgb(255, 71, 71)');
+        redGradient.addColorStop(1, 'rgb(255, 71, 71)');
+        
+        //gradient
+        var blueGradient = ctx_5.createRadialGradient(width, height, 0, width, height, width / 2);
+        blueGradient.addColorStop(0, 'rgb(36, 138, 253)');
+        blueGradient.addColorStop(1, 'rgb(36, 138, 253)');
+        
+        //gradient
+        var greenGradient = ctx_5.createRadialGradient(width, height, 0, width, height, width / 2);
+        greenGradient.addColorStop(0, 'rgb(255, 193, 0)');
+        greenGradient.addColorStop(1, 'rgb(255, 193, 0)');
+        
+        //gradient
+        var purpleGradient = ctx_5.createRadialGradient(width, height, 0, width, height, width / 2);
+        purpleGradient.addColorStop(0, 'rgb(75, 73, 172)');
+        purpleGradient.addColorStop(1, 'rgb(75, 73, 172)');
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // Radar Data
+        var radarData_5= {
+        labels: ["Intercluturel.1","Mediation.1","Modération.1", "Moderation.2", "Modération.3","Participation.1", "Participation.2",
+        "Technique.1", "Pensée.1","Methode.R1", "Methode.R2", "Methode.C1",  
+        "Gestion.1", "Gestion.2","Evaluation.1", "Autogestion.1", "Autogestion.2",
+        "Esprit.1", "Esprit.2","Networking.1","Networking.2", "Communication.1", "Communication.2"],
+        
+        datasets: [
+        {
+         
+
+
+         label: "Facilitador",
+         fill: true,
+                 backgroundColor: "rgba(36, 138, 253,0.2)",
+                 borderColor: "rgb(36, 138, 253)",
+                 pointBorderColor: "#fff",
+                 pointBackgroundColor: "rgba(36, 138, 253,1)",
+        
+         
+         data: 
+            
+             ["{{sujets_interculturel_1_max}}","{{sujets_med_max}}","{{sujets_mod_1_max}}", "{{sujets_mod_2_max}}","{{sujets_mod_3_max}}", "{{sujets_participation_1_max}}","{{sujets_participation_2_max}}",
+             Number.NaN, Number.NaN,Number.NaN, Number.NaN,Number.NaN, 
+             Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN,
+             Number.NaN, Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN],
+        
+        },
+        {
+         label: "Visionario",
+         fill: true,
+                 backgroundColor: "rgba(255, 71, 71,0.2)",
+                 borderColor: "rgba(255, 71, 71,1)",
+                 pointBorderColor: "#fff",
+                 pointBackgroundColor: "rgba(255, 71, 71,1)",
+         data:  
+         [Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN,Number.NaN, Number.NaN,
+         "{{sujets_technique_1_max}}","{{sujets_pensee_1_max}}","{{sujets_method_r_1_max}}","{{sujets_method_r_2_max}}","{{sujets_method_c_1_max}}",
+         Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN,
+         Number.NaN, Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN],
+        },
+        
+        {
+         label: "Maker",
+         fill: true,
+                 backgroundColor: "rgba(255, 193, 0,0.2)",
+                 borderColor: "rgb(255, 193, 0,1)",
+                 pointBorderColor: "#fff",
+                 pointBackgroundColor: "rgba(255, 193, 0,1)",
+                 label: "Visionario",
+
+
+        
+         data:[Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN,Number.NaN, Number.NaN,
+         Number.NaN,  Number.NaN, Number.NaN,  Number.NaN,  Number.NaN, 
+        
+         "{{sujets_gestion_projet_1_max}}","{{sujets_gestion_projet_2_max}}","{{sujets_evaluation_1_max}}","{{sujets_organisation_1_max}}", "{{sujets_organisation_2_max}}",
+         Number.NaN, Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN],
+        
+        },
+        
+        {
+         label: "Manager",
+         fill: true,
+                 backgroundColor: "rgba(75, 73, 172,0.2)",
+                 borderColor: "rgb(5, 73, 172,1)",
+                 pointBorderColor: "#fff",
+                 pointBackgroundColor: "rgba(5, 73, 172,1)",
+      
+        
+         data : 
+         [Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN,Number.NaN, Number.NaN,
+         Number.NaN,  Number.NaN, Number.NaN,  Number.NaN,  Number.NaN,  
+         Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN,
+         "{{sujets_gestion_esprit_1_max}}","{{sujets_gestion_esprit_2_max}}", "{{sujets_networking_1_max}}", "{{sujets_networking_2_max}}","{{sujets_communication_1_max}}","{{sujets_communication_2_max}}"],
+        },
+        
+        ]
+        }
+        
+        var myChart = new Chart(ctx_5, {
+        type: "radar",
+        data: radarData_5,
+        options: radarOptions,
+        });
+        
+        
+        
+        </script>     
+          
+          
+     <!------End-------------->     
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+<!------------------------------>
+
+
+
+
+
+                      
+                      
+                      
+           
+                      
+                      
+                      
+                      
+                      
+                      
+                             
+                             
+                                <div class="row">
+                                  <div class="col-md-8 grid-margin stretch-card">
+                                    <div class="card">
+                                      <div class="card-body">
+                                        <p class="card-title">Individual Results</p>
+                              
+                                     
+                      <!--------------------------->
+                      <!-----------------Start------------->
+                      <div class="container" id="chart">
+                        <canvas id="radarChart" ></canvas>
+                      </div>
+                      <script>
+                      //Get the context of the Radar Chart canvas element we want to select
+                      var ctx = document.getElementById("radarChart").getContext("2d");
+                      
+                      // Radar Chart Options
+                      var radarOptions = {
+                          padding: 40,
+                          //Boolean - If we show the scale above the chart data
+                          scaleOverlay: false,
+                      
+                          //Boolean - If we want to override with a hard coded scale
+                          scaleOverride: false,
+                      
+                          //** Required if scaleOverride is true **
+                          //Number - The number of steps in a hard coded scale
+                          scaleSteps: null,
+                          //Number - The value jump in the hard coded scale
+                          scaleStepWidth: null,
+                          //Number - The centre starting value
+                          scaleStartValue: null,
+                      
+                          //Boolean - Whether to show lines for each scale point
+                          scaleShowLine: true,
+                      
+                          //String - Colour of the scale line
+                          scaleLineColor: "#999",
+                      
+                          //Number - Pixel width of the scale line
+                          scaleLineWidth: 1,
+                      
+                          //Boolean - Whether to show labels on the scale
+                          scaleShowLabels: false,
+                      
+                          //Interpolated JS string - can access value
+                          scaleLabel: "<%=value%>",
+                      
+                          //String - Scale label font declaration for the scale label
+                          scaleFontFamily: "'Arial'",
+                      
+                          //Number - Scale label font size in pixels
+                          scaleFontSize: 50,
+                      
+                          //String - Scale label font weight style
+                          scaleFontStyle: "normal",
+                      
+                          //String - Scale label font colour
+                          scaleFontColor: "#666",
+                      
+                          //Boolean - Show a backdrop to the scale label
+                          scaleShowLabelBackdrop: true,
+                      
+                          //String - The colour of the label backdrop
+                          scaleBackdropColor: "rgba(255,255,255,0.75)",
+                      
+                          //Number - The backdrop padding above & below the label in pixels
+                          scaleBackdropPaddingY: 2,
+                      
+                          //Number - The backdrop padding to the side of the label in pixels
+                          scaleBackdropPaddingX: 2,
+                      
+                          //Boolean - Whether we show the angle lines out of the radar
+                          angleShowLineOut: true,
+                      
+                          //String - Colour of the angle line
+                          angleLineColor: "rgba(255,255,255,0.3)",
+                      
+                          //Number - Pixel width of the angle line
+                          angleLineWidth: 1,
+                      
+                          //String - Point label font declaration
+                          pointLabelFontFamily: "'Arial'",
+                      
+                          //String - Point label font weight
+                          pointLabelFontStyle: "normal",
+                      
+                          //Number - Point label font size in pixels
+                          pointLabelFontSize: 50,
+                      
+                          //String - Point label font colour
+                          pointLabelFontColor: "#EFEFEF",
+                      
+                          //Boolean - Whether to show a dot for each point
+                          pointDot: true,
+                      
+                          //Number - Pixel width of point dot stroke
+                          pointDotStrokeWidth: 4,
+                      
+                          //Boolean - Whether to show a stroke for datasets
+                          datasetStroke: true,
+                      
+                          //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+                          pointHitDetectionRadius: 20,
+                      
+                          //Number - Pixel width of dataset stroke
+                          datasetStrokeWidth: 10,
+                      
+                          scale: {
+                              pointLabels: {
+                                  fontSize: 12
+                              },
+                      
+                              elements: {
+                                  point: {
+                                      radius: 20,
+                                  }
+                              },
+                      
+                              ticks: {
+                                  min: 0,
+                                  max: 5,
+                                  fixedStepSize: 1,
+                              }
+                          },
+                      /*
+                          legend: {
+                              display:false
+                          },*/
+                      
+                          //roundStrokes: true
+                      
+                          //Boolean - Whether to animate the chart
+                          //animation: true,
+                      
+                          //Number - Number of animation steps
+                          // animationSteps: 60,
+                      
+                          //String - Animation easing effect
+                          //  animationEasing: "easeOutQuart",
+                      
+                          //Function - Fires when the animation is complete
+                          // onAnimationComplete: null
+                      }
+                      
+                      var width = chart.offsetWidth / 2.35;
+                      var height = chart.offsetHeight * 2;
+                      
+                      //gradient
+                      var gradient = ctx.createRadialGradient(width, height, 0, width, height, width / 2);
+                      gradient.addColorStop(0, 'rgb(75, 73, 172)');
+                      gradient.addColorStop(1, 'rgb(75, 73, 172)');
+                      
+                      //gradient
+                      var redGradient = ctx.createRadialGradient(width, height, 0, width, height, width / 2);
+                      redGradient.addColorStop(0, 'rgb(255, 71, 71)');
+                      redGradient.addColorStop(1, 'rgb(255, 71, 71)');
+                      
+                      //gradient
+                      var blueGradient = ctx.createRadialGradient(width, height, 0, width, height, width / 2);
+                      blueGradient.addColorStop(0, 'rgb(36, 138, 253)');
+                      blueGradient.addColorStop(1, 'rgb(36, 138, 253)');
+                      
+                      //gradient
+                      var greenGradient = ctx.createRadialGradient(width, height, 0, width, height, width / 2);
+                      greenGradient.addColorStop(0, 'rgb(255, 193, 0)');
+                      greenGradient.addColorStop(1, 'rgb(255, 193, 0)');
+                      
+                      //gradient
+                      var purpleGradient = ctx.createRadialGradient(width, height, 0, width, height, width / 2);
+                      purpleGradient.addColorStop(0, 'rgb(75, 73, 172)');
+                      purpleGradient.addColorStop(1, 'rgb(75, 73, 172)');
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      // Radar Data
+                      var radarData = {
+                          labels: ["Intercluturel.1","Mediation.1","Modération.1", "Moderation.2", "Modération.3","Participation.1", "Participation.2",
+                          "Technique.1", "Pensée.1","Methode.R1", "Methode.R2", "Methode.C1",  
+                          "Gestion.1", "Gestion.2","Evaluation.1", "Autogestion.1", "Autogestion.2",
+                          "Esprit.1", "Esprit.2","Networking.1","Networking.2", "Communication.1", "Communication.2"],
+                      
+                          datasets: [
+                              {
+                                  
+                                  label: "Facilitador",
+                                  backgroundColor: blueGradient,
+                                  pointBackgroundColor: "rgb(36, 138, 253)",
+                                  pointBorderColor: "rgb(36, 138, 253)",
+                      
+                                  
+                                  data: 
+                                     
+                                      ["{{ evaluation.interculturel_1 }}","{{evaluation.mediation_1}}","{{evaluation.moderation_1}}","{{evaluation.moderation_2}}","{{evaluation.moderation_3}}","{{evaluation.participation_1}}", "{{evaluation.participation_2}}",
+                                      Number.NaN, Number.NaN,Number.NaN, Number.NaN,Number.NaN, 
+                                      Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN,
+                                      Number.NaN, Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN],
+                             
+                                },
+                              {
+                                  label: "Visionario",
+                                  backgroundColor:  redGradient,
+                                  pointBackgroundColor: "rgb(255, 71, 71)",
+                                  pointBorderColor: "rgb(255, 71, 71)",
+                        
+                                  data:  
+                                  [Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN,Number.NaN, Number.NaN,
+                                  "{{evaluation.technique_1}}", "{{evaluation.pensee_1}}", "{{evaluation.method_r_1}}", "{{evaluation.method_r_2}}",  "{{evaluation.method_c_1}}", 
+                                  Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN,
+                                  Number.NaN, Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN],
+                              },
+                      
+                              {
+                                  label: "Maker",
+                                  backgroundColor: greenGradient,
+                                  pointBackgroundColor: "rgb(255, 193, 0)",
+                                  pointBorderColor: "rgb(255, 193, 0)",
+                         
+                                  data:[Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN,Number.NaN, Number.NaN,
+                                  Number.NaN,  Number.NaN, Number.NaN,  Number.NaN,  Number.NaN, 
+                                
+                                  "{{evaluation.gestion_projet_1}}", "{{evaluation.gestion_projet_2}}","{{evaluation.evaluation_1}}", "{{evaluation.organisation_1}}", "{{evaluation.organisation_2}}",
+                                  Number.NaN, Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN],
+                                 
+                              },
+                      
+                              {
+                                  label: "Manager",
+                                  backgroundColor: purpleGradient,
+                                  pointBackgroundColor: "rgb(75, 73, 172)",
+                                  pointBorderColor: "rgb(75, 73, 172)",
+                                 
+                                  data : 
+                                  [Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN,Number.NaN, Number.NaN,
+                                  Number.NaN,  Number.NaN, Number.NaN,  Number.NaN,  Number.NaN,  
+                                  Number.NaN,Number.NaN,Number.NaN, Number.NaN, Number.NaN,
+                                  "{{evaluation.esprit_1}}", "{{evaluation.esprit_2}}","{{evaluation.networking_1}}","{{evaluation.networking_2}}", "{{evaluation.communication_1}}", "{{evaluation.communication_2}}"],
+                              },
+                             
+                          ]
+                      }
+                      
+                      var myChart = new Chart(ctx, {
+                          type: "radar",
+                          data: radarData,
+                          options: radarOptions,
+                      });
+                      
+                      
+                      
+                      </script>              
+                      <!--------------------------end -->
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      <!----------------------------------------------------->
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4 grid-margin stretch-card">
+                                    <div class="card">
+                                      <div class="card-body">
+                                       <div class="d-flex justify-content-between">
+                                        <p class="card-title">Individual Results</p>
+                                     
+                                       </div>
+                             
+                      
+                                  
+                                          <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                            <table class="table table-borderless report-table">
+                                      
+                                           
+                                              <tr>
+                                                <td class="text-muted"> Facilitator</td>
+                                                <td class="w-100 px-0">
+                                                  <div class="progress progress-md mx-4">
+                                                    <div class="progress-bar bg-info" role="progressbar" style="width: {{facilitador}}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                                  </div>
+                                                </td>
+                                              
+                                              </tr>
+                                              <tr>
+                                                <td class="text-muted">Visionnary</td>
+                                                <td class="w-100 px-0">
+                                                  <div class="progress progress-md mx-4">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{visionario}}%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                                  </div>
+                                                </td>
+                                         
+                                              </tr>
+                                              <tr>
+                                                <td class="text-muted">Maker</td>
+                                                <td class="w-100 px-0">
+                                                  <div class="progress progress-md mx-4">
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: {{maker}}%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                                  </div>
+                                                </td>
+                                                
+                                              </tr>
+                                              <tr>
+                                                <td class="text-muted">Manager</td>
+                                                <td class="w-100 px-0">
+                                                  <div class="progress progress-md mx-4">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: {{manager}}%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                                  </div>
+                                                </td>
+                                             
+                                              </tr>
+                                          
+                                    
+                                            </table>
+                                          </div>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+
+
+
+                                <div class="row">
+
+ 
+                                  <div class="col-md-6 grid-margin transparent">
+                                      <img style="width: 100%;" src="{% static 'Social/social_2.JPG' %}" alt="image" class="responsive">
+                                  </div>
+                                  
+                                    
+                                    </div>
+                      
+
+         
+                      
+                             
+                             
+                                <div class="row">
+                                    <div class="col-md-8 grid-margin stretch-card">
+                                      <div class="card">
+                                        <div class="card-body">
+                                          <p class="card-title">Individual Results</p>
+                                          <p class="font-weight-500"></p>
+                                       
+                        <!--------------------------->
+                        <!-----------------Start------------->
+                        
+                        <!--------------------------end -->
+                        
+                        
+                        <canvas id="myChart_1" ></canvas>
+                        <script>
+                        const ctx_1 = document.getElementById('myChart_1').getContext('2d');
+                        
+                        const myChart_1 = new Chart(ctx_1, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Manager', 'Maker', 'Visionari', 'Facilitator'],
+                                datasets: [{
+                                    label: '# of Votes',
+                                    data: ["{{manager}}", "{{maker}}", "{{visionario}}","{{facilitador}}" ],
+                                    backgroundColor: [
+                                        'rgb(75, 73, 172)',
+                                        'rgb(255, 193, 0)',
+                                        'rgb(255, 71, 71)',
+                                        'rgb(36, 138, 253)',
+                                      
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgb(255, 193, 0)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                    
+                                    ],
+                                    borderWidth: 0
+                                }]
+                            },
+                            options: {
+
+
+
+
+                              
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                        </script>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!----------------------------------------------------->
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-4 grid-margin stretch-card">
+                                      <div class="card">
+                                        <div class="card-body">
+                               
+                                          
+                        
+                                          <p class="card-title">Individual Results </p>
+                                   
+                                          <main class="d-flex">
+                                            <div id="role-list">
+                                             
+            
+                                                    {% include 'Scoialization/role-disp-list.html' %}
+                                           
+                                           
+            
+                                            </div>
+                                          </main>
+                                          
+                                          
+                                          
+                                          
+                                          
+                                          
+                                          
+                                          
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+                      
+                      
+                      
+                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+           
+          
+          
+          
+          
+          
+          
+          
+           
+          
+          
+          <!--------Métodologia------------->
+          
+          
+          
+                  </div>
+                  <!-- content-wrapper ends -->
+                  <!-- partial:partials/_footer.html -->
+                  <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                      <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  ERPI <a href="" target="_blank">All rights reserved.</span>
+                
+                    </div>
+                  
+                  </footer> 
+                  <!-- partial -->
+                </div>
+                <!-- main-panel ends -->
+              </div>   
+              <!-- page-body-wrapper ends -->
+            </div>
+            <!-- container-scroller -->
+          
+            <!-- plugins:js -->
+            <script src="{% static 'dash/vendors/js/vendor.bundle.base.js' %}"></script>
+            <!-- endinject -->
+            <!-- Plugin js for this page -->
+            <script src="{% static 'dash/vendors/chart.js/Chart.min.js' %}"></script>
+            <script src="{% static 'dash/vendors/datatables.net/jquery.dataTables.js' %}"></script>
+            <script src="{% static 'dash/vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+            <script src="{% static 'dash/js/dataTables.select.min.js' %}"></script>
+          
+            <!-- End plugin js for this page -->
+            <!-- inject:js -->
+            <script src="{% static 'dash/js/off-canvas.js' %}"></script>
+            <script src="{% static 'dash/js/hoverable-collapse.js' %}"></script>
+            <script src="{% static 'dash/js/template.js' %}"></script>
+            <script src="{% static 'dash/js/settings.js' %}"></script>
+            <script src="{% static 'dash/js/todolist.js' %}"></script>
+            <!-- endinject -->
+            <!-- Custom js for this page-->
+            <script src="{% static 'dash/js/dashboard.js' %}"></script>
+            <script src="{% static 'dash/js/Chart.roundedBarCharts.js' %}"></script>
+            <script>
+              document.body.addEventListener('htmx:configRequest', (event) => {
+                  event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+              })
+          
+              htmx.onLoad(function(content) {
+                  var sortables = content.querySelectorAll(".sortable");
+                  for (var i = 0; i < sortables.length; i++) {
+                      var sortable = sortables[i];
+                      new Sortable(sortable, {
+                          animation: 150,
+                          ghostClass: 'blue-background-class'
+                      });
+                  }
+              })
+              </script>
+            <!-- End custom js for this page-->
+          
+           
+          </body>
+          
+          </html>
+          
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

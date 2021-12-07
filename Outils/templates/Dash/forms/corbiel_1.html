@@ -1,0 +1,947 @@
+{% load static %}
+
+{% load i18n %}
+
+
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+      labels: labels,
+      datasets: [{
+          label: '# of Votes',
+          data: defaultData,
+          backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+      }]
+  },
+  options: {
+      scales: {
+          y: {
+              beginAtZero: true
+          }
+      }
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Formulaire d'évaluation</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'dash/vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'dash/vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'dash/vendors/css/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'dash/vendors/select2/select2.min.css' %}">
+  <link rel="stylesheet" href="{% static 'dash/vendors/select2-bootstrap-theme/select2-bootstrap.min.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'dash/css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'dash/images/favicon.png' %}" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="../../index.html"><img src="" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="{% static 'dash/images/logo-mini.svg' %}" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+      
+          <li class="nav-item nav-settings d-none d-lg-flex">
+            <a class="nav-link" href="#">
+              <i class="icon-ellipsis"></i>
+            </a>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:../../partials/_settings-panel.html -->
+      <div class="theme-setting-wrapper">
+        <div id="settings-trigger"><i class="ti-settings"></i></div>
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close ti-close"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles default"></div>
+          </div>
+        </div>
+      </div>
+      <div id="right-sidebar" class="settings-panel">
+        <i class="settings-close ti-close"></i>
+        <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="setting-content">
+          <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel" aria-labelledby="todo-section">
+            <div class="add-items d-flex px-3 mb-0">
+            
+            </div>
+            <div class="list-wrapper px-3">
+              <ul class="d-flex flex-column-reverse todo-list">
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Team review meeting at 3.00 PM
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Prepare for presentation
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Resolve all the low priority tickets due today
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li class="completed">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox" checked>
+                      Schedule meeting for next week
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li class="completed">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox" checked>
+                      Project review
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+              </ul>
+            </div>
+            <h4 class="px-3 text-muted mt-5 font-weight-light mb-0">Events</h4>
+            <div class="events pt-4 px-3">
+              <div class="wrapper d-flex mb-2">
+                <i class="ti-control-record text-primary mr-2"></i>
+                <span>Feb 11 2018</span>
+              </div>
+              <p class="mb-0 font-weight-thin text-gray">Creating component page build a js</p>
+              <p class="text-gray mb-0">The total number of sessions</p>
+            </div>
+            <div class="events pt-4 px-3">
+              <div class="wrapper d-flex mb-2">
+                <i class="ti-control-record text-primary mr-2"></i>
+                <span>Feb 7 2018</span>
+              </div>
+              <p class="mb-0 font-weight-thin text-gray">Meeting with Alisa</p>
+              <p class="text-gray mb-0 ">Call Sarah Graves</p>
+            </div>
+          </div>
+          <!-- To do section tab ends -->
+          <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
+            <div class="d-flex align-items-center justify-content-between border-bottom">
+              <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
+              <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See All</small>
+            </div>
+            <ul class="chat-list">
+              <li class="list active">
+                <div class="profile"><img src="{% static 'dash/images/faces/face1.jpg' %}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Thomas Douglas</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">19 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'dash/images/faces/face2.jpg' %}" alt="image"><span class="offline"></span></div>
+                <div class="info">
+                  <div class="wrapper d-flex">
+                    <p>Catherine</p>
+                  </div>
+                  <p>Away</p>
+                </div>
+                <div class="badge badge-success badge-pill my-auto mx-2">4</div>
+                <small class="text-muted my-auto">23 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'dash/images/faces/face3.jpg' %}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Daniel Russell</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">14 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'dash/images/faces/face4.jpg' %}" alt="image"><span class="offline"></span></div>
+                <div class="info">
+                  <p>James Richardson</p>
+                  <p>Away</p>
+                </div>
+                <small class="text-muted my-auto">2 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'dash/images/faces/face5.jpg' %}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Madeline Kennedy</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">5 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'dash/images/faces/face6.jpg' %}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Sarah Graves</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">47 min</small>
+              </li>
+            </ul>
+          </div>
+          <!-- chat tab ends -->
+        </div>
+      </div>
+      <!-- partial -->
+      <!-- partial:../../partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../../index.html">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">UI Elements</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/buttons.html">Buttons</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/typography.html">Typography</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+              <i class="icon-columns menu-icon"></i>
+              <span class="menu-title">Form elements</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="../../pages/forms/basic_elements.html">Basic Elements</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">Charts</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="../../pages/charts/chartjs.html">ChartJs</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+              <i class="icon-grid-2 menu-icon"></i>
+              <span class="menu-title">Tables</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="tables">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="../../pages/tables/basic-table.html">Basic table</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+              <i class="icon-contract menu-icon"></i>
+              <span class="menu-title">Icons</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="icons">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="../../pages/icons/mdi.html">Mdi icons</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">User Pages</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Login </a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register.html"> Register </a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+              <i class="icon-ban menu-icon"></i>
+              <span class="menu-title">Error pages</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="error">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-404.html"> 404 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-500.html"> 500 </a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../pages/documentation/documentation.html">
+              <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">Documentation</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">        
+        <div class="content-wrapper">
+          <div class="row">
+           
+      
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Compétences pour les équipes des plateformes d'innovation sociale</h4>
+                  <p class="card-description">
+                    Ceci est un exercice d'auto-évaluation.
+
+                   Veuillez évaluer chaque compétence selon les niveaux suivants :
+                   <ul>
+                     <li>
+                      0 - Je ne comprends pas en quoi consiste la compétence.
+                     </li>
+                     <li>
+                      1 - Je comprends en quoi consiste la compétence et pourquoi elle est importante, mais je ne la pratique pas.
+                     </li>
+                     <li>
+                      2 - Je pratique cette compétence sous supervision ou avec de l'encouragement. 
+                     </li>
+                     <li>
+                      3 - Je pratique cette compétence sans supervision ni encouragement  
+                     </li>
+                     <li>
+                      4 - J'encourage ou je supervise les autres dans cette compétence.
+                     </li>
+                     <li>
+                      5 - Je développe de nouvelles façons d'appliquer cette compétence. Même en dehors de mon organisation. 
+                     </li>
+                   </ul>
+                   
+          
+                  </p>
+         
+                </div>
+              </div>
+            </div>
+
+
+
+<!--------------------Gestion du projet-->
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Gestion de projet</h4>
+      <p class="card-description">
+        Compétence en matière de planification et de mise en œuvre de projets innovants ; respect des exigences juridiques ainsi que de l'expertise financière, des contrats et des accords sur l'utilisation de l'espace.  
+      </p>
+
+      <form method="POST">
+                    
+        {% load crispy_forms_tags %}
+      
+        {% csrf_token %}
+      <div class="form-group row">
+        <div class="col">
+          
+          <label>Concevoir et mettre en œuvre des projets à caractère innovant :</label>
+          <div id="the-basics">
+            {{ form.gestion_projet_1 }}
+          </div>
+        </div>
+        <div class="col">
+          <label>Répondre aux exigences techniques, financières et juridiques des projets : </label>
+          <div id="bloodhound">
+            {{form.gestion_projet_2 }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-------------------Médiation-->
+
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Modération</h4>
+                  <p class="card-description">
+                    Compétence en matière de planification et de mise en œuvre de projets innovants ; respect des exigences juridiques ainsi que de l'expertise financière, des contrats et des accords sur l'utilisation de l'espace.                    
+                  </p>
+                  
+                         
+      
+
+              
+
+
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect2">Élaborer des stratégies émergentes pour intégrer les nouvelles connaissances et piloter l'ensemble du projet en temps réel: </label>
+                    <p>
+                      {{ form.moderation_1 }}
+                    </p>
+                    
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect2">Aider à dessiner une vision collective, encourager les gens à partager des idées et à participer: </label>
+                    <p>
+                      {{ form.moderation_2 }}
+                    </p>
+                    
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect2">Appliquer des méthodes et pratiques pédagogiques  pour assurer la progression des équipes et des participants: </label>
+                    <p>
+                      {{ form.moderation_3 }}
+                    </p>
+                    
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+
+<!-------------------fin fu gestion du projet -->
+
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Médiation</h4>
+      <p class="card-description">
+        Compétence pour aider les participants d’un projet à se comprendre et à se concentrer sur les questions importantes nécessaires pour parvenir à une résolution des conflits.                    
+      </p>
+      
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Concevoir et mettre en œuvre des stratégies de résolution des conflits : </label>
+        <p>
+          {{ form.mediation_1 }}
+        </p>
+        
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-------------------Networking -->
+
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Networking</h4>
+      <p class="card-description">
+        Compétence pour aider les participants d’un projet à se comprendre et à se concentrer sur les questions importantes nécessaires pour parvenir à une résolution des conflits.                    
+      </p>
+      
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Établir des liens et des relations avec les organisations et les entreprises locales, les organismes de financement, des associations : </label>
+        <p>
+          {{ form.networking_1 }}
+        </p>
+        
+      </div>
+
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Favoriser des rencontres pertinentes et fructueuse entre les personnes : </label>
+        <p>
+          {{ form.networking_2 }}
+        </p>
+        
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<!-------------------Participation -->
+
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Participation</h4>
+      <p class="card-description">
+        Competence in fostering mechanisms for the involvement of the parties in the project's decision-making processes.              
+      </p>
+      
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Repenser les modèles de projets traditionnels sur la base des approches participatives courantes : </label>
+        <p>
+          {{ form.participation_1 }}
+        </p>
+        
+      </div>
+
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Mettre en place des dispositifs collaboratifs pour inviter les gens à participer aux activités du projet, les familiariser avec le projet, les accueillir et les orienter : </label>
+        <p>
+          {{ form.participation_2 }}
+        </p>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-------------------Communication -->
+
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Communication</h4>
+      <p class="card-description">
+        Compétence en matière d'empathie, de changement de perspective et d'utilisation d’outils de communication de manière claire, positive et conviviale.              
+      </p>
+      
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Avoir de l'empathie et être ouvert aux autres points de vue en écoutant l'expérience des autres : </label>
+        <p>
+          {{ form.communication_1}}
+        </p>
+        
+      </div>
+
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Utiliser les médias avec un style clair, positif et convivial : </label>
+        <p>
+          {{ form.communication_2}}
+        </p>
+        
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-------------------Auto-organisation -->
+
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Auto-organisation</h4>
+      <p class="card-description">
+        Compétence pour tolérer la complexité et la contrariété, la confiance et l'estime de soi.              
+      </p>
+      
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Croire en sa propre capacité à choisir une approche efficace pour mener à bien une tâche ou une activité dans des environnements de plus en plus complexes : </label>
+        <p>
+          {{ form.communication_1 }}
+        </p>
+        
+      </div>
+
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Faire preuve de tolérance dans des situations de plus en plus complexes et contrariantes? : </label>
+        <p>
+          {{ form.communication_2 }}
+        </p>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Interculturel</h4>
+      <p class="card-description">
+        Compétence pour assurer l'inclusion tout au long du projet.              
+      </p>
+      
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Mettre en place des dispositifs permettant d'assurer l'inclusion de tous, quels que soient leur culture, leur âge, leur situation économique ou leur lieu de résidence : </label>
+        <p>
+          {{ form.interculturel_1 }}
+        </p>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Évaluation</h4>
+      <p class="card-description">
+        Compétence dans la conception de mécanismes de suivi des stratégies et des résultats.            
+      </p>
+      
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Concevoir et mettre en œuvre des mécanismes de saisie et d'analyse des données afin d'éclairer une stratégie donnée et de mettre en évidence ses résultats : </label>
+        <p>
+          {{ form.evaluation_1 }}
+        </p>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Méthodes de recherche et travail interdisciplinaire</h4>
+      <p class="card-description">
+        Compétence pour travailler dans des environnements interdisciplinaires en utilisant diverses méthodes de recherche telles que la pensée critique, l'analyse de données, la recherche sociale, l'anthropologie, etc.            
+      </p>
+      
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Travailler avec d'autres disciplines/acteurs de l'écosystème social : </label>
+        <p>
+          {{ form.method_r_1 }}
+        </p>
+        
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Appliquer des méthodes de travail/recherche différentes de celles utilisées dans ma discipline : </label>
+        <p>
+          {{ form.method_r_2 }}
+        </p>
+        
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Méthodes de conception et pensée créative</h4>
+      <p class="card-description">
+        Compétence dans l'application de méthodes de conception telles que le design thinking, la théorie du changement, la planification, etc.      
+      </p>
+      
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Associer les idées et les connaissances de manière inédite, utiliser les techniques de design pour l'innovation : </label>
+        <p>
+          {{ form.method_c_1 }}
+        </p>
+        
+      </div>
+ 
+
+
+
+
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Techniques du numérique et des télécommunications</h4>
+      <p class="card-description">
+        Compétence dans les technologies numériques qui permettent de soutenir le développement du projet :      
+      </p>
+      
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Développer des prototypes technologiques appliqués via la programmation, la simulation, la modélisation, etc. : </label>
+        <p>
+          {{ form.technique_1 }}
+        </p>
+        
+      </div>
+ 
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">L'esprit entrepreneurial</h4>
+      <p class="card-description">
+        Compétence en matière de processus d'incubation de projets et d'entreprises     
+      </p>
+      
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Gérer une entreprise ou une activité entrepreneuriale : </label>
+        <p>
+          {{ form.esprit_1}}
+        </p>
+        
+      </div>
+   
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Recombiner les atouts et les opportunités dans le cadre d'un processus d'incubation de projet : </label>
+        <p>
+          {{ form.esprit_2 }}
+        </p>
+        
+      </div>
+ 
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Pensée systémique</h4>
+      <p class="card-description">
+        Capacité à relever les défis de manière globale et à examiner les liens et les interactions entre tous les éléments qui le composent     
+      </p>
+      
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Concevoir et mettre en œuvre des stratégies pour gérer la complexité, la pensée anticipative, et la culture du changement : </label>
+        <p>
+          {{ form.pensee_1 }}
+        </p>
+        
+      </div>
+   
+
+
+      <button type="submit" class="btn btn-primary mr-2">Envoyer vos réponses </button>
+    </form>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="{% static 'dash/vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'dash/vendors/typeahead.js' %}/typeahead.bundle.min.js' %}"></script>
+  <script src="{% static 'dash/vendors/select2/select2.min.js' %}"></script>
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'dash/jsoff-canvas.js' %}"></script>
+  <script src="{% static 'dash/jshoverable-collapse.js' %}"></script>
+  <script src="{% static 'dash/jstemplate.js' %}"></script>
+  <script src="{% static 'dash/jssettings.js' %}"></script>
+  <script src="{% static 'dash/jstodolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'dash/jsfile-upload.js' %}"></script>
+  <script src="{% static 'dash/jstypeahead.js' %}"></script>
+  <script src="{% static 'dash/jsselect2.js' %}"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>

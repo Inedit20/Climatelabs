@@ -1,0 +1,55 @@
+
+
+
+                        
+                    
+                            
+                                {% if messages %}
+                                <ul class="messages" hx-get="{% url 'clear' %}" hx-trigger="load delay:3s">
+                                    {% for message in messages %}
+                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            
+                                {% if roles %}
+                                
+                                    {% csrf_token %}
+                                    <form class="sortable list-group" hx-trigger="end" hx-post="{% url 'sort' %}" hx-target="#role-list">
+                                 
+                                        {% for role in roles %}
+                                        <div>
+                                            <input type="hidden" name="role_order" value="{{ role.pk }}" />
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                {{ role.role.name }}
+                                                <span class="badge badge-danger badge-pill" 
+                                                    style="cursor: pointer;"
+                                                    hx-delete="{% url 'delete-role' pk_1=eval.pk  pk_2=role.pk %}"
+                                                    hx-target="#role-list"
+                                                    hx-confirm="Are you sure you wish to delete?">X</span>
+                                            </li>
+                                        </div>
+                                    {% endfor %}
+                                    </form>
+                                {% else %}
+                                    <p>You do not have any roles in your list</p>
+                                {% endif %}
+                            
+                          
+                            
+                                <script>
+                                    document.body.addEventListener('htmx:configRequest', (event) => {
+                                        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+                                    })
+                                
+                                    htmx.onLoad(function(content) {
+                                        var sortables = content.querySelectorAll(".sortable");
+                                        for (var i = 0; i < sortables.length; i++) {
+                                            var sortable = sortables[i];
+                                            new Sortable(sortable, {
+                                                animation: 150,
+                                                ghostClass: 'blue-background-class'
+                                            });
+                                        }
+                                    })
+                                    </script>               

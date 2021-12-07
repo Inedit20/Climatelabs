@@ -1,0 +1,477 @@
+
+
+
+            
+            <div class="row">
+            
+            
+ 
+
+    
+            
+            </div>
+            
+
+
+            
+
+            
+            
+
+
+            {% load static %}
+            {% load i18n %}
+            {% load crispy_forms_tags %}
+            <!DOCTYPE html>
+            <html lang="en">
+            
+            <head>
+              <!-- Required meta tags -->
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+              <title>Climatelabs CLT</title>
+              <!-- plugins:css -->
+              <link rel="stylesheet" href="{% static 'dash/vendors/feather/feather.css' %}">
+              <link rel="stylesheet" href="{% static 'dash/vendors/ti-icons/css/themify-icons.css' %}">
+              <link rel="stylesheet" href="{% static 'dash/vendors/css/vendor.bundle.base.css' %}">
+              <!-- endinject -->
+              <!-- Plugin css for this page -->
+              <link rel="stylesheet" href="{% static 'dash/vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+              <link rel="stylesheet" href="{% static 'dash/vendors/ti-icons/css/themify-icons.css' %}">
+              <link rel="stylesheet" type="text/css" href="{% static 'dash/js/select.dataTables.min.css' %}">
+              <!-- End plugin css for this page -->
+              <!-- inject:css -->
+            
+              <link rel="stylesheet" href="{% static 'dash/css/vertical-layout-light/style.css' %}">
+              <link rel="shortcut icon" href="{% static 'dash/favicon.png' %}" />
+            
+            </head>
+            <body>
+              <div class="container-scroller">
+                <!-- partial:partials/_navbar.html -->
+                <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+                  <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                    <a class="navbar-brand brand-logo mr-5" href="{% url 'home' %}"><img src="{% static 'dash/logo.svg' %}" class="mr-2" alt="Climatelabs"/></a>
+                    <a class="navbar-brand brand-logo-mini" href="{% url 'home' %}"><img src="{% static 'dash/logo-mini.svg' %}" alt="CLT"/></a>
+                  </div>
+                  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                      <span class="icon-menu"></span>
+                    </button>
+                    <ul class="navbar-nav mr-lg-2">
+                      <li class="nav-item nav-search d-none d-lg-block">
+                        <div class="input-group">
+                          <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                            <span class="input-group-text" id="search">
+                             
+                            </span>
+                          </div>
+                          
+                        </div>
+                      </li>
+                    </ul>
+                    <ul class="navbar-nav navbar-nav-right">
+                     
+                  
+               
+                    </ul>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                      <span class="icon-menu"></span>
+                    </button>
+                  </div>
+                </nav>
+                <!-- partial -->
+                <div class="container-fluid page-body-wrapper">
+                  <!-- partial:partials/_settings-panel.html -->
+                
+                  <div id="right-sidebar" class="settings-panel">
+              
+                  </div>
+                  <!-- partial -->
+                  <!-- partial:partials/_sidebar.html -->
+                  <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                    <ul class="nav">
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">
+                          <i class="icon-grid menu-icon"></i>
+                          <span class="menu-title">{% trans 'Home' %}</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                          <i class="icon-layout menu-icon"></i>
+                          <span class="menu-title">{% trans 'Evaluation' %}</span>
+                          <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                          <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="">{% trans 'New evaluation' %} </a></li>
+                            <li class="nav-item"> <a class="nav-link" href=""> {% trans 'Join an evaluation' %}</a></li>
+                      
+                          </ul>
+                        </div>
+                      </li>
+                   
+            
+                      <li class="nav-item">
+                        <a class="nav-link" href="pages/documentation/documentation.html">
+                          <i class="icon-paper menu-icon"></i>
+                          <span class="menu-title">{% trans 'Documentation' %}</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                  <!-- partial -->
+                  <div class="main-panel">
+                    <div class="content-wrapper">
+                      <div class="row">
+                        <div class="col-md-12 grid-margin">
+                          <div class="row">
+                            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                              <h3 class="font-weight-bold">{% trans 'Competences for Social Innovation Labs' %}</h3>
+                             
+                            </div>
+                            <div class="col-12 col-xl-4">
+                             <div class="justify-content-end d-flex">
+                              <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                                <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                 <i class="mdi mdi-calendar"></i> {% trans 'Languages' %}
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                                  <a class="dropdown-item" href="#">{% trans 'French' %}</a>
+                                  <a class="dropdown-item" href="#">{% trans 'English' %}</a>
+                                  <a class="dropdown-item" href="#">{% trans 'Spanish' %}</a>
+                                
+                                </div>
+                              </div>
+                             </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                
+            
+            
+            
+                      
+            
+                      <div class="row">
+                     
+            
+            
+     
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+     
+                        <div class="col-md-12 grid-margin stretch-card">
+    
+    
+    
+      
+    
+    
+    
+                          <div class="card">
+                            <div class="card-body">
+                        
+                      
+                
+                
+                              <div class="col-md-12">
+                                <div class="card-body">
+                        
+                                  <div class="template-demo">
+                                    <button type="button" class="btn btn-inverse-secondary btn-fw">{% trans 'Team' %}</button>
+                                    <button type="button" class="btn btn-inverse-info btn-fw">{% trans 'Profil' %}</button>
+                                    <button type="button" class="btn btn-inverse-secondary btn-fw">{% trans 'Questionnaire ' %}</button>
+                                    <button type="button" class="btn btn-inverse-secondary btn-fw">{% trans 'Roles' %}</button>
+                                    <button type="button" class="btn btn-inverse-secondary btn-fw">{% trans 'Results' %}</button>
+                                    
+                                  
+                                  </div>
+
+
+                                  <h4 class="card-title"> </h4>
+                          
+                                  <form class="form-sample" method="POST">
+                                    {% load crispy_forms_tags %}
+                                      
+                    
+                                    {% csrf_token %}
+                                  <div class="form-group row">
+                                    <div class="col">
+                                      <label>{% trans 'Your full name :' %}</label>
+                                      <div id="bloodhound">
+                                        {{form.nom_prenom}}
+                                      </div>
+                                    </div>
+                                    <div class="col">
+                                      <label>{% trans 'Email :' %}</label>
+                                      <div id="the-basics">
+                                        {{form.email}}
+                                      </div>
+                                    </div>
+                                 
+                                  </div>
+                         
+                
+                                  <div class="form-group row">
+                             
+                                    <div class="col">
+                                      <label>{% trans 'Your main role within the laboratory:' %} </label>
+                                      <div id="bloodhound">
+                                        {{form.statut}}
+                                      </div>
+                                    </div>
+                 
+                            
+                                    <div class="col">
+                                      <label>{% trans 'Name of the Innovation Laboratory:' %}</label>
+                                      <div id="the-basics">
+                                        {{form.organisation}}
+                                      </div>
+                                    </div>
+                
+                
+                
+                
+                            
+                                    
+                                  </div>
+                  
+                        
+                            <div class="form-group row">
+                              <div class="col">
+                                <label>{% trans 'Veuillez nous dire quel est votre rôle/mission/fonction/objet  principal au sein de votre tiers-lieux' %}</label>
+                                <div id="the-basics">
+                                  {{form.mission}}
+                                </div>
+                              </div>
+                           
+                            </div>
+                                
+                               
+                
+                                <!-----composante 1-->
+                                <div class="form-group row">
+                                 
+                                    
+                                
+                                  <div class="col">
+                                    <label>{% trans 'Quels sont vos principaux domaines de compétence ' %}</label>
+                                    <div id="bloodhound">
+                                      {{form.domaine}}
+                                    </div>
+                                  </div>
+              
+              
+              
+                                </div>
+                  
+                               <button type="submit" class="btn btn-info mr-2">{% trans 'Start the evaluation' %}</button>
+                                   </form>
+
+
+
+
+                                </div>
+                              </div>
+                
+              
+                        
+                            </div>  
+                            
+                  
+                          </div>
+                     
+                        
+                        
+
+
+                   
+
+
+
+
+
+
+
+
+
+
+
+                          
+                        
+                        
+                        </div>
+                           
+                          
+                
+                
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                   
+                      </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             
+            
+            
+            <!--------Métodologia------------->
+            
+            
+            
+                    </div>
+                    <!-- content-wrapper ends -->
+                    <!-- partial:partials/_footer.html -->
+                    <footer class="footer">
+                      <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  ERPI <a href="" target="_blank">All rights reserved.</span>
+                  
+                      </div>
+                    
+                    </footer> 
+                    <!-- partial -->
+                  </div>
+                  <!-- main-panel ends -->
+                </div>   
+                <!-- page-body-wrapper ends -->
+              </div>
+              <!-- container-scroller -->
+            
+              <!-- plugins:js -->
+              <script src="{% static 'dash/vendors/js/vendor.bundle.base.js' %}"></script>
+              <!-- endinject -->
+              <!-- Plugin js for this page -->
+              <script src="{% static 'dash/vendors/chart.js/Chart.min.js' %}"></script>
+              <script src="{% static 'dash/vendors/datatables.net/jquery.dataTables.js' %}"></script>
+              <script src="{% static 'dash/vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+              <script src="{% static 'dash/js/dataTables.select.min.js' %}"></script>
+            
+              <!-- End plugin js for this page -->
+              <!-- inject:js -->
+              <script src="{% static 'dash/js/off-canvas.js' %}"></script>
+              <script src="{% static 'dash/js/hoverable-collapse.js' %}"></script>
+              <script src="{% static 'dash/js/template.js' %}"></script>
+              <script src="{% static 'dash/js/settings.js' %}"></script>
+              <script src="{% static 'dash/js/todolist.js' %}"></script>
+              <!-- endinject -->
+              <!-- Custom js for this page-->
+              <script src="{% static 'dash/js/dashboard.js' %}"></script>
+              <script src="{% static 'dash/js/Chart.roundedBarCharts.js' %}"></script>
+              <!-- End custom js for this page-->
+            
+              <script>
+             function toggleClock() {
+                // get the clock
+                var myClock = document.getElementById('clock');
+            
+                // get the current value of the clock's display property
+                var displaySetting = myClock.style.display;
+            
+                // also get the clock button, so we can change what it says
+                var clockButton = document.getElementById('clockButton');
+            
+                // now toggle the clock and the button text, depending on current state
+                if (displaySetting == 'block') {
+                  // clock is visible. hide it
+                  myClock.style.display = 'none';
+                  // change button text
+                  clockButton.innerHTML = 'Show clock';
+                }
+                else {
+                  // clock is hidden. show it
+                  myClock.style.display = 'block';
+                  // change button text
+                  clockButton.innerHTML = 'Hide clock';
+                }
+              }
+                </script>
+            </body>
+            
+            </html>
+            
+            
+  
+  
+
+
+        
+                        
+            
+            
+            
+
+
+
+
+
+
+

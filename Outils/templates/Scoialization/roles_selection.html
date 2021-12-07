@@ -1,0 +1,538 @@
+
+
+
+
+
+          {% load static %}
+          {% load i18n %}
+          {% load crispy_forms_tags %}
+          <!DOCTYPE html>
+          <html lang="en">
+          
+          <head>
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <title>Climatelabs CLT</title>
+            <!-- plugins:css -->
+            <link rel="stylesheet" href="{% static 'dash/vendors/feather/feather.css' %}">
+            <link rel="stylesheet" href="{% static 'dash/vendors/ti-icons/css/themify-icons.css' %}">
+            <link rel="stylesheet" href="{% static 'dash/vendors/css/vendor.bundle.base.css' %}">
+            <!-- endinject -->
+            <!-- Plugin css for this page -->
+            <link rel="stylesheet" href="{% static 'dash/vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+            <link rel="stylesheet" href="{% static 'dash/vendors/ti-icons/css/themify-icons.css' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'dash/js/select.dataTables.min.css' %}">
+            <!-- End plugin css for this page -->
+            <!-- inject:css -->
+          
+            <link rel="stylesheet" href="{% static 'dash/css/vertical-layout-light/style.css' %}">
+            <link rel="shortcut icon" href="{% static 'dash/favicon.png' %}" />
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
+</head>
+          
+        
+          <body>
+            <div class="container-scroller">
+              <!-- partial:partials/_navbar.html -->
+              <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+                <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                  <a class="navbar-brand brand-logo mr-5" href="{% url 'home' %}"><img src="{% static 'dash/logo.svg' %}" class="mr-2" alt="Climatelabs"/></a>
+                  <a class="navbar-brand brand-logo-mini" href="{% url 'home' %}"><img src="{% static 'dash/logo-mini.svg' %}" alt="CLT"/></a>
+                </div>
+                <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                  <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="icon-menu"></span>
+                  </button>
+                  <ul class="navbar-nav mr-lg-2">
+                    <li class="nav-item nav-search d-none d-lg-block">
+                      <div class="input-group">
+                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                          <span class="input-group-text" id="search">
+                           
+                          </span>
+                        </div>
+                        
+                      </div>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav navbar-nav-right">
+                   
+                
+             
+                  </ul>
+                  <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="icon-menu"></span>
+                  </button>
+                </div>
+              </nav>
+              <!-- partial -->
+              <div class="container-fluid page-body-wrapper">
+                <!-- partial:partials/_settings-panel.html -->
+              
+                <div id="right-sidebar" class="settings-panel">
+            
+                </div>
+                <!-- partial -->
+                <!-- partial:partials/_sidebar.html -->
+                <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                  <ul class="nav">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'home' %}">
+                        <i class="icon-grid menu-icon"></i>
+                        <span class="menu-title">{% trans 'Home' %}</span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                        <i class="icon-layout menu-icon"></i>
+                        <span class="menu-title">{% trans 'Evaluation' %}</span>
+                        <i class="menu-arrow"></i>
+                      </a>
+                      <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                          <li class="nav-item"> <a class="nav-link" href="">{% trans 'New evaluation' %} </a></li>
+                          <li class="nav-item"> <a class="nav-link" href=""> {% trans 'Join an evaluation' %}</a></li>
+                    
+                        </ul>
+                      </div>
+                    </li>
+                 
+          
+                    <li class="nav-item">
+                      <a class="nav-link" href="pages/documentation/documentation.html">
+                        <i class="icon-paper menu-icon"></i>
+                        <span class="menu-title">{% trans 'Documentation' %}</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+                <!-- partial -->
+                <div class="main-panel">
+                  <div class="content-wrapper">
+                    <div class="row">
+                      <div class="col-md-12 grid-margin">
+                        <div class="row">
+                          <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                            <h3 class="font-weight-bold">{% trans 'Competences for Social Innovation Labs' %}</h3>
+                           
+                          </div>
+                          <div class="col-12 col-xl-4">
+                           <div class="justify-content-end d-flex">
+                            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                              <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                               <i class="mdi mdi-calendar"></i> {% trans 'Languages' %}
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                                <a class="dropdown-item" href="#">{% trans 'French' %}</a>
+                                <a class="dropdown-item" href="#">{% trans 'English' %}</a>
+                                <a class="dropdown-item" href="#">{% trans 'Spanish' %}</a>
+                              
+                              </div>
+                            </div>
+                           </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              
+          
+          
+          
+                    
+          
+                    <div class="row">
+                   
+          
+          
+   
+          
+          
+          
+                      {% if messages %}
+                      <ul class="messages" hx-get="{% url 'clear' %}" hx-trigger="load delay:1s">
+                          {% for message in messages %}
+                          <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                          {% endfor %}
+                      </ul>
+                      {% endif %}
+          
+          
+          
+          
+          
+          
+          
+          
+          
+   
+                      <div class="col-md-12 grid-margin stretch-card">
+  
+  
+  
+    
+  
+  
+  
+                        <div class="card">
+                          <div class="card-body">
+                      
+                    
+              
+              
+                            <div class="col-md-12">
+                              <div class="card-body">
+                      
+                                <div class="template-demo">
+                                  <button type="button" class="btn btn-inverse-secondary  btn-fw">{% trans 'Team' %}</button>
+                                  <button type="button" class="btn btn-inverse-secondary btn-fw">{% trans 'Profil' %}</button>
+                                  <button type="button" class="btn btn-inverse-secondary btn-fw">{% trans 'Questionnaire ' %}</button>
+                                  <button type="button" class="btn btn-inverse-warning btn-fw">{% trans 'Roles' %}</button>
+                                  <button type="button" class="btn btn-inverse-secondary btn-fw">{% trans 'Results' %}</button>
+                                  
+                                
+                                </div>
+                              </div>
+                            </div>
+              
+              
+              
+              <!--------------------------------------------------------------------------------------------------->
+              
+              
+                                  
+              <div class="form-group row">
+            
+
+
+
+
+
+                    
+                <div class="col">
+                  
+                  <label> <strong>{% trans '<strong>Climatelabs</strong> Roles that  you identify with:' %}</strong></label>
+                  <div id="the-basics">
+                   {% for role_def in roles_definis %}
+                   <form hx-post="{% url 'add-role' pk=evaluation.pk %}" hx-target='#role-list' class="d-flex align-items-center">
+                  
+                       {% csrf_token %}
+                       <input type="text" 
+                           id="rolename-input"
+                           name="rolename" 
+                           value= "{{role_def.name}}"
+                           class="form-control-sm mr-2"
+                           />
+                       <button type="submit" class="btn btn-warning btn-sm">{% trans 'Add Role' %}</button>
+                   </form>
+                   {% endfor %}
+       
+       
+       
+       
+       
+                  </div>
+                </div>
+       
+       
+       
+       
+                <div class="col">
+                  <label><strong>{% trans 'Ordered by the role that you most identify with' %}</strong> </label>
+
+
+    
+                  <main class="d-flex">
+                    <section id="role-list" class="col-12">
+                      {% include 'Scoialization/role-list.html' %}
+                    </section>
+                   </main>
+
+
+                </div>
+       
+         
+               
+                
+              </div> 
+              <a class="btn btn-warning mr-2" href="{% url 'scoialization_results'  pk=evaluation.pk %}">{% trans 'Confirm your choice ' %}</a>     
+           
+
+
+
+
+
+
+
+
+
+                            <!---------------------------------------------------------->
+                      
+                          </div>         
+                        </div>
+                   
+                      
+                      
+                      
+                      
+                      </div>
+                         
+ 
+          
+          
+                 
+                    </div>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+           
+          
+          
+          <!--------Métodologia------------->
+          
+          
+          
+                  </div>
+                  <!-- content-wrapper ends -->
+                  <!-- partial:partials/_footer.html -->
+                  <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                      <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  ERPI <a href="" target="_blank">All rights reserved.</span>
+                
+                    </div>
+                  
+                  </footer> 
+                  <!-- partial -->
+                </div>
+                <!-- main-panel ends -->
+              </div>   
+              <!-- page-body-wrapper ends -->
+            </div>
+            <!-- container-scroller -->
+          
+            <!-- plugins:js -->
+            <script src="{% static 'dash/vendors/js/vendor.bundle.base.js' %}"></script>
+            <!-- endinject -->
+            <!-- Plugin js for this page -->
+            <script src="{% static 'dash/vendors/chart.js/Chart.min.js' %}"></script>
+            <script src="{% static 'dash/vendors/datatables.net/jquery.dataTables.js' %}"></script>
+            <script src="{% static 'dash/vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+            <script src="{% static 'dash/js/dataTables.select.min.js' %}"></script>
+          
+            <!-- End plugin js for this page -->
+            <!-- inject:js -->
+            <script src="{% static 'dash/js/off-canvas.js' %}"></script>
+            <script src="{% static 'dash/js/hoverable-collapse.js' %}"></script>
+            <script src="{% static 'dash/js/template.js' %}"></script>
+            <script src="{% static 'dash/js/settings.js' %}"></script>
+            <script src="{% static 'dash/js/todolist.js' %}"></script>
+            <!-- endinject -->
+            <!-- Custom js for this page-->
+  
+            <script>
+              document.body.addEventListener('htmx:configRequest', (event) => {
+                  event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+              })
+          
+              htmx.onLoad(function(content) {
+                  var sortables = content.querySelectorAll(".sortable");
+                  for (var i = 0; i < sortables.length; i++) {
+                      var sortable = sortables[i];
+                      new Sortable(sortable, {
+                          animation: 150,
+                          ghostClass: 'blue-background-class'
+                      });
+                  }
+              })
+              </script>
+            <!-- End custom js for this page-->
+          
+           
+          </body>
+          
+          </html>
+          
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

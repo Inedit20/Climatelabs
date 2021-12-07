@@ -1,0 +1,839 @@
+
+
+          {% load static %}
+          {% load i18n %}
+          {% load crispy_forms_tags %}
+          <!DOCTYPE html>
+          <html lang="en">
+          
+          <head>
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <title>Climatelabs CLT</title>
+            <!-- plugins:css -->
+            <link rel="stylesheet" href="{% static 'dash/vendors/feather/feather.css' %}">
+            <link rel="stylesheet" href="{% static 'dash/vendors/ti-icons/css/themify-icons.css' %}">
+            <link rel="stylesheet" href="{% static 'dash/vendors/css/vendor.bundle.base.css' %}">
+            <!-- endinject -->
+            <!-- Plugin css for this page -->
+            <link rel="stylesheet" href="{% static 'dash/vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+            <link rel="stylesheet" href="{% static 'dash/vendors/ti-icons/css/themify-icons.css' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'dash/js/select.dataTables.min.css' %}">
+            <!-- End plugin css for this page -->
+            <!-- inject:css -->
+          
+            <link rel="stylesheet" href="{% static 'dash/css/vertical-layout-light/style.css' %}">
+            <link rel="shortcut icon" href="{% static 'dash/favicon.png' %}" />
+          
+          </head>
+          <body>
+            <div class="container-scroller">
+              <!-- partial:partials/_navbar.html -->
+              <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+                <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                  <a class="navbar-brand brand-logo mr-5" href="{% url 'home' %}"><img src="{% static 'dash/logo.svg' %}" class="mr-2" alt="Climatelabs"/></a>
+                  <a class="navbar-brand brand-logo-mini" href="{% url 'home' %}"><img src="{% static 'dash/logo-mini.svg' %}" alt="CLT"/></a>
+                </div>
+                <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                  <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="icon-menu"></span>
+                  </button>
+                  <ul class="navbar-nav mr-lg-2">
+                    <li class="nav-item nav-search d-none d-lg-block">
+                      <div class="input-group">
+                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                          <span class="input-group-text" id="search">
+                           
+                          </span>
+                        </div>
+                        
+                      </div>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav navbar-nav-right">
+                   
+                
+             
+                  </ul>
+                  <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="icon-menu"></span>
+                  </button>
+                </div>
+              </nav>
+              <!-- partial -->
+              <div class="container-fluid page-body-wrapper">
+                <!-- partial:partials/_settings-panel.html -->
+              
+                <div id="right-sidebar" class="settings-panel">
+            
+                </div>
+                <!-- partial -->
+                <!-- partial:partials/_sidebar.html -->
+                <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                  <ul class="nav">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'home' %}">
+                        <i class="icon-grid menu-icon"></i>
+                        <span class="menu-title">{% trans 'Home' %}</span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                        <i class="icon-layout menu-icon"></i>
+                        <span class="menu-title">{% trans 'Evaluation' %}</span>
+                        <i class="menu-arrow"></i>
+                      </a>
+                      <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                          <li class="nav-item"> <a class="nav-link" href="">{% trans 'New evaluation' %} </a></li>
+                          <li class="nav-item"> <a class="nav-link" href=""> {% trans 'Join an evaluation' %}</a></li>
+                    
+                        </ul>
+                      </div>
+                    </li>
+                 
+          
+                    <li class="nav-item">
+                      <a class="nav-link" href="pages/documentation/documentation.html">
+                        <i class="icon-paper menu-icon"></i>
+                        <span class="menu-title">{% trans 'Documentation' %}</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+                <!-- partial -->
+                <div class="main-panel">
+                  <div class="content-wrapper">
+                    <div class="row">
+                      <div class="col-md-12 grid-margin">
+                        <div class="row">
+                          <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                            <h3 class="font-weight-bold">{% trans 'Competences for Social Innovation Labs' %}</h3>
+                           
+                          </div>
+                          <div class="col-12 col-xl-4">
+                           <div class="justify-content-end d-flex">
+                            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                              <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                               <i class="mdi mdi-calendar"></i> {% trans 'Languages' %}
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                                <a class="dropdown-item" href="#">{% trans 'French' %}</a>
+                                <a class="dropdown-item" href="#">{% trans 'English' %}</a>
+                                <a class="dropdown-item" href="#">{% trans 'Spanish' %}</a>
+                              
+                              </div>
+                            </div>
+                           </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              
+          
+          
+          
+
+
+
+          <div class="row">
+                <!-------------------Géstion du projet-->
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+          
+
+
+
+              
+              
+              
+                  <div class="col-md-12">
+                    <div class="card-body">
+            
+                      <div class="template-demo">
+                        <button type="button" class="btn btn-inverse-secondary btn-fw">{% trans 'Team' %}</button>
+                        <button type="button" class="btn btn-inverse-secondary btn-fw">{% trans 'Profil' %}</button>
+                        <button type="button" class="btn btn-inverse-primary btn-fw">{% trans 'Questionnaire ' %}</button>
+                        <button type="button" class="btn btn-inverse-secondary btn-fw">{% trans 'Roles' %}</button>
+                        <button type="button" class="btn btn-inverse-secondary btn-fw">{% trans 'Results' %}</button>
+                        
+                      
+                      </div>
+                    </div>
+                  </div>
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   <h4 class="card-title">{% trans 'Gestion de projet' %}</h4>
+                   <p class="card-description">
+                     <string ></string> {% trans 'Compétence en matière de planification et de mise en œuvre de projets innovants; respect des exigences juridiques ainsi que de l&#039expertise financière, des contrats et des accords sur l&#039utilisation de l&#039espace. '%}  
+                   </p>
+                  <!-----------<button onclick="toggleClock()" id="clockButton">Show clock</button> ---------------> 
+                   <form method="POST">       
+                     {% load crispy_forms_tags %}
+                   
+                     {% csrf_token %}
+                    
+                   <div class="form-group row">
+                     <div class="col">
+                       
+                       <label> <strong>{% trans 'Concevoir et mettre en œuvre des projets à caractère innovant :' %}</strong></label>
+                       <div id="the-basics">
+                         {{form.gestion_projet_1}}
+                       </div>
+                     </div>
+                     <div class="col">
+                       <label><strong>{% trans 'Répondre aux exigences techniques, financières et juridiques des projets :' %}</strong> </label>
+                       <div id="bloodhound">
+                         {{form.gestion_projet_2}}
+                       </div>
+                     </div>
+           
+              
+                    
+                     
+                   </div>              
+                    <a  class="btn btn-primary mr-2" href="#div1"> {% trans 'La modération des équipes' %} </a>
+                </div>         
+              </div>
+            </div>
+
+          <!-------------------Modération-->
+          
+            <div class="col-md-12 grid-margin stretch-card" id="div1">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">{% trans 'Modération' %}</h4>
+                  <p class="card-description">
+                    Compétence en matière de planification et de mise en œuvre de projets innovants ; respect des exigences juridiques ainsi que de l'expertise financière, des contrats et des accords sur l'utilisation de l'espace.                    
+                  </p>
+                                           
+                  <div class="form-group row">
+                    <div class="col">
+                      
+                      <label> <strong>{% trans 'Élaborer des stratégies émergentes pour intégrer les nouvelles connaissances et piloter l&#039ensemble du projet en temps réel:' %}</strong></label>
+                      <div id="the-basics">
+                        {{form.moderation_1}}
+                      </div>
+                    </div>
+                    <div class="col">
+                      <label><strong>Répondre aux exigences techniques, financières et juridiques des projets :</strong> </label>
+                      <div id="bloodhound">
+                        {{form.moderation_2}}
+                      </div>
+                    </div>
+          
+                    <div class="col">
+                      <label><strong>Répondre aux exigences techniques, financières et juridiques des projets :</strong> </label>
+                      <div id="bloodhound">
+                        {{form.moderation_3}}
+                      </div>
+                    </div>             
+                  </div>
+                  <a  class="btn btn-primary mr-2" href="#div2"> {% trans 'La Médiation' %} </a>
+                </div>
+              </div>
+            </div>
+          
+           <!-------------------Médiation-->         
+           <div class="col-md-12 grid-margin stretch-card" id="div2">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">{% trans 'Médiation' %}</h4>
+                <p class="card-description">
+                {% trans  'Compétence pour aider les participants d&#039un projet à se comprendre et à se concentrer sur les questions importantes nécessaires pour parvenir à une résolution des conflits.' %}                
+                </p>
+                                         
+                <div class="form-group row">
+                  <div class="col">
+                    
+                    <label> <strong>{% trans 'Concevoir et mettre en œuvre des stratégies de résolution des conflits :' %}</strong></label>
+                    <div id="the-basics">
+                      {{form.mediation_1}}
+                    </div>
+                  </div>
+               
+                </div>
+                <a  class="btn btn-primary mr-2" href="#div3"> {% trans 'Networking' %} </a>
+              </div>
+            </div>
+          </div>
+            
+    
+          <!-------------------Networking -->
+          <div class="col-md-12 grid-margin stretch-card" id = "div3">
+            <div class="card">
+              <div class="card-body">
+        
+                 <h4 class="card-title">Networking</h4>
+                 <p class="card-description">
+                   <string ></string>{% trans 'Compétence pour aider les participants d&#039un projet à se comprendre et à se concentrer sur les questions importantes nécessaires pour parvenir à une résolution des conflits.'%}  
+                 </p>
+                <!-----------<button onclick="toggleClock()" id="clockButton">Show clock</button> ---------------> 
+                 <form method="POST">       
+                   {% load crispy_forms_tags %}
+                 
+                   {% csrf_token %}
+                  
+                 <div class="form-group row">
+                   <div class="col">
+                     
+                     <label> <strong>{% trans 'Établir des liens et des relations avec les organisations et les entreprises locales, les organismes de financement, des associations :' %}</strong></label>
+                     <div id="the-basics">
+                      {{form.networking_1}}
+                     </div>
+                   </div>
+                   <div class="col">
+                     <label><strong>{% trans 'Favoriser des rencontres pertinentes et fructueuse entre les personnes :' %}</strong> </label>
+                     <div id="bloodhound">
+                      {{form.networking_2}}
+                     </div>
+                   </div>
+                 </div>              
+                  <a  class="btn btn-primary mr-2" href="#div4"> {% trans 'Participation' %} </a>
+              </div>         
+            </div>
+          </div>
+
+z
+
+  
+          <!-------------------Participation -->
+
+
+          <div class="col-md-12 grid-margin stretch-card" id="div4">
+            <div class="card">
+              <div class="card-body">
+        
+                 <h4 class="card-title">Participation</h4>
+                 <p class="card-description">
+                   <string ></string>{% trans 'Competence in fostering mechanisms for the involvement of the parties in the project&#039s decision-making processes.'%}  
+                 </p>
+                <!-----------<button onclick="toggleClock()" id="clockButton">Show clock</button> ---------------> 
+                 <form method="POST">       
+                   {% load crispy_forms_tags %}
+                 
+                   {% csrf_token %}
+                  
+                 <div class="form-group row">
+                   <div class="col">
+                     
+                     <label> <strong>{% trans 'Repenser les modèles de projets traditionnels sur la base des approches participatives courantes :' %}</strong></label>
+                     <div id="the-basics">
+                      {{form.participation_1}}
+                     </div>
+                   </div>
+                   <div class="col">
+                     <label><strong>{% trans 'Mettre en place des dispositifs collaboratifs pour inviter les gens à participer aux activités du projet, les familiariser avec le projet, les accueillir et les orienter :' %}</strong> </label>
+                     <div id="bloodhound">
+                      {{form.participation_2}}
+                     </div>
+                   </div>
+                 </div>              
+                  <a  class="btn btn-primary mr-2" href="#div5"> {% trans 'Communication' %} </a>
+              </div>         
+            </div>
+          </div>
+          
+
+          
+          
+          
+          <!-------------------Communication -->
+          
+
+          <div class="col-md-12 grid-margin stretch-card" id="div5">
+            <div class="card">
+              <div class="card-body">
+        
+                 <h4 class="card-title">{% trans 'Communication' %}</h4>
+                 <p class="card-description">
+                   <string ></string>{% trans 'Compétence en matière d&#039empathie, de changement de perspective et d$#039utilisation d&#039outils de communication de manière claire, positive et conviviale.'%}  
+                 </p>
+                <!-----------<button onclick="toggleClock()" id="clockButton">Show clock</button> ---------------> 
+                 <form method="POST">       
+                   {% load crispy_forms_tags %}
+                 
+                   {% csrf_token %}
+                  
+                 <div class="form-group row">
+                   <div class="col">
+                     
+                     <label> <strong>{% trans 'Avoir de l&#039empathie et être ouvert aux autres points de vue en écoutant l&#039expérience des autres :' %}</strong></label>
+                     <div id="the-basics">
+                      {{form.communication_1}}
+                     </div>
+                   </div>
+                   <div class="col">
+                     <label><strong>{% trans 'Utiliser les médias avec un style clair, positif et convivial :' %}</strong> </label>
+                     <div id="bloodhound">
+                      {{form.communication_2}}
+                     </div>
+                   </div>
+                 </div>              
+                  <a  class="btn btn-primary mr-2" href="#div6"> {% trans 'Auto-organisation' %} </a>
+              </div>         
+            </div>
+          </div>
+          
+
+
+
+
+          <!-------------------Auto-organisation -->
+          
+          
+          <div class="col-md-12 grid-margin stretch-card" id="div6">
+            <div class="card">
+              <div class="card-body">
+        
+                 <h4 class="card-title">{% trans 'Auto-organisation' %}</h4>
+                 <p class="card-description">
+                   <string ></string>{% trans 'Compétence pour tolérer la complexité et la contrariété, la confiance et l$#039estime de soi.'%}  
+                 </p>
+                <!-----------<button onclick="toggleClock()" id="clockButton">Show clock</button> ---------------> 
+                 <form method="POST">       
+                   {% load crispy_forms_tags %}
+                 
+                   {% csrf_token %}
+                  
+                 <div class="form-group row">
+                   <div class="col">
+                     
+                     <label> <strong>{% trans 'Croire en sa propre capacité à choisir une approche efficace pour mener à bien une tâche ou une activité dans des environnements de plus en plus complexes :' %}</strong></label>
+                     <div id="the-basics">
+                      {{form.organisation_1}}
+                     </div>
+                   </div>
+                   <div class="col">
+                     <label><strong>{% trans 'Faire preuve de tolérance dans des situations de plus en plus complexes et contrariantes? : ' %}</strong> </label>
+                     <div id="bloodhound">
+                      {{form.organisation_2}}
+                     </div>
+                   </div>
+                 </div>              
+                  <a  class="btn btn-primary mr-2" href="#div7"> {% trans 'Intercluturel' %} </a>
+              </div>         
+            </div>
+          </div>
+
+          <!--------------------------Interculturel -->
+          
+
+    
+          <div class="col-md-12 grid-margin stretch-card" id="div7">
+            <div class="card">
+              <div class="card-body">
+        
+                 <h4 class="card-title">{% trans 'Intercluturel' %}</h4>
+                 <p class="card-description">
+                   <string ></string>{% trans 'Compétence pour assurer l&#039inclusion tout au long du projet.'%}  
+                 </p>
+                <!-----------<button onclick="toggleClock()" id="clockButton">Show clock</button> ---------------> 
+                 <form method="POST">       
+                   {% load crispy_forms_tags %}
+                 
+                   {% csrf_token %}
+                  
+                 <div class="form-group row">
+                   <div class="col">
+                     
+                     <label> <strong>{% trans 'Mettre en place des dispositifs permettant d&#039assurer l&#039inclusion de tous, quels que soient leur culture, leur âge, leur situation économique ou leur lieu de résidence :' %}</strong></label>
+                     <div id="the-basics">
+                      {{form.interculturel_1}}
+                     </div>
+                   </div>
+         
+                 </div>              
+                  <a  class="btn btn-primary mr-2" href="#div8"> {% trans 'Evaluation' %} </a>
+              </div>         
+            </div>
+          </div>
+
+
+
+<!------------------------Evaluation-->
+          
+
+    
+<div class="col-md-12 grid-margin stretch-card" id="div8">
+  <div class="card">
+    <div class="card-body">
+
+       <h4 class="card-title">{% trans 'Evaluation' %}</h4>
+       <p class="card-description">
+         <string ></string>{% trans 'Compétence dans la conception de mécanismes de suivi des stratégies et des résultats.'%}  
+       </p>
+      <!-----------<button onclick="toggleClock()" id="clockButton">Show clock</button> ---------------> 
+       <form method="POST">       
+         {% load crispy_forms_tags %}
+       
+         {% csrf_token %}
+        
+       <div class="form-group row">
+         <div class="col">
+           
+           <label> <strong>{% trans 'Concevoir et mettre en œuvre des mécanismes de saisie et d&#039analyse des données afin d&#039éclairer une stratégie donnée et de mettre en évidence ses résultats :' %}</strong></label>
+           <div id="the-basics">
+            {{form.evaluation_1}}
+           </div>
+         </div>
+
+       </div>              
+        <a  class="btn btn-primary mr-2" href="#div9"> {% trans 'Méthodes de recherche et travail interdisciplinaire' %} </a>
+    </div>         
+  </div>
+</div>
+
+
+
+<!------------------------Méthodes de recherche et travail interdisciplinaire-->
+          
+
+    
+<div class="col-md-12 grid-margin stretch-card" id="div9">
+  <div class="card">
+    <div class="card-body">
+
+       <h4 class="card-title">{% trans 'Méthodes de recherche et travail interdisciplinaire' %}</h4>
+       <p class="card-description">
+         <string ></string>{% trans 'Compétence pour travailler dans des environnements interdisciplinaires en utilisant diverses méthodes de recherche telles que la pensée critique, l&#39analyse de données, la recherche sociale, l&#039anthropologie, etc.'%}  
+       </p>
+      <!-----------<button onclick="toggleClock()" id="clockButton">Show clock</button> ---------------> 
+       <form method="POST">       
+         {% load crispy_forms_tags %}
+       
+         {% csrf_token %}
+        
+    
+       <div class="form-group row">
+        <div class="col">
+          
+          <label> <strong>{% trans 'Travailler avec d&#039autres disciplines/acteurs de l&#039écosystème social : ' %}</strong></label>
+          <div id="the-basics">
+           {{form.method_r_1}}
+          </div>
+        </div>
+
+
+        <div class="col">
+          
+          <label> <strong>{% trans 'Appliquer des méthodes de travail/recherche différentes de celles utilisées dans ma discipline :' %}</strong></label>
+          <div id="the-basics">
+           {{form.method_r_2}}
+          </div>
+        </div>
+      </div>               
+        <a  class="btn btn-primary mr-2" href="#div10"> {% trans 'Méthodes de conception et pensée créative' %} </a>
+    </div>         
+  </div>
+</div>
+
+
+
+
+<!----------Méthodes de conception et pensée créative-------------->
+    
+
+<div class="col-md-12 grid-margin stretch-card" id="div10">
+  <div class="card">
+    <div class="card-body">
+
+       <h4 class="card-title">{% trans 'Méthodes de conception et pensée créative' %}</h4>
+       <p class="card-description">
+         <string ></string>{% trans 'Compétence dans l&#039application de méthodes de conception telles que le design thinking, la théorie du changement, la planification, etc.'%}  
+       </p>
+      <!-----------<button onclick="toggleClock()" id="clockButton">Show clock</button> ---------------> 
+       <form method="POST">       
+         {% load crispy_forms_tags %}
+       
+         {% csrf_token %}
+        
+    
+       <div class="form-group row">
+        <div class="col">
+          
+          <label> <strong>{% trans 'Associer les idées et les connaissances de manière inédite, utiliser les techniques de design pour l&#039innovation :' %}</strong></label>
+          <div id="the-basics">
+           {{form.method_c_1}}
+          </div>
+        </div>
+
+      </div>               
+        <a  class="btn btn-primary mr-2" href="#div12"> {% trans 'Techniques du numérique et des télécommunications' %} </a>
+    </div>         
+  </div>
+</div>
+
+
+
+
+
+<!----------Techniques du numérique et des télécommunications-------------->
+    
+
+<div class="col-md-12 grid-margin stretch-card" id="div12">
+  <div class="card">
+    <div class="card-body">
+
+       <h4 class="card-title">{% trans 'Techniques du numérique et des télécommunications' %}</h4>
+       <p class="card-description">
+         <string ></string>{% trans 'Compétence dans les technologies numériques qui permettent de soutenir le développement du projet :      '%}  
+       </p>
+      <!-----------<button onclick="toggleClock()" id="clockButton">Show clock</button> ---------------> 
+       <form method="POST">       
+         {% load crispy_forms_tags %}
+       
+         {% csrf_token %}
+        
+    
+       <div class="form-group row">
+        <div class="col">
+          
+          <label> <strong>{% trans 'Développer des prototypes technologiques appliqués via la programmation, la simulation, la modélisation, etc. : ' %}</strong></label>
+          <div id="the-basics">
+            {{form.technique_1}}
+          </div>
+        </div>
+
+      </div>               
+        <a  class="btn btn-primary mr-2" href="#div13"> {% trans 'L&#039esprit entrepreneurial' %} </a>
+    </div>         
+  </div>
+</div>
+
+
+
+
+
+<!---------L'esprit entrepreneurial--------------->
+    
+
+<div class="col-md-12 grid-margin stretch-card" id="div13">
+  <div class="card">
+    <div class="card-body">
+
+       <h4 class="card-title">{% trans 'L&#039esprit entrepreneurial' %}</h4>
+       <p class="card-description">
+         <string ></string>{% trans 'Compétence en matière de processus d&#039incubation de projets et d&#039entreprises.'%}  
+       </p>
+      <!-----------<button onclick="toggleClock()" id="clockButton">Show clock</button> ---------------> 
+       <form method="POST">       
+         {% load crispy_forms_tags %}
+       
+         {% csrf_token %}
+        
+    
+       <div class="form-group row">
+        <div class="col">
+          
+          <label> <strong>{% trans 'Gérer une entreprise ou une activité entrepreneuriale : ' %}</strong></label>
+          <div id="the-basics">
+            {{form.esprit_1}}
+          </div>
+        </div>
+
+
+        <div class="col">
+          
+          <label> <strong>{% trans 'Recombiner les atouts et les opportunités dans le cadre d&#039un processus d&#039incubation de projet :' %}</strong></label>
+          <div id="the-basics">
+            {{form.esprit_2}}
+          </div>
+        </div>
+      </div>               
+        <a  class="btn btn-primary mr-2" href="#div14"> {% trans 'Pensée systémique' %} </a>
+    </div>         
+  </div>
+</div>
+
+
+
+
+<!----------Pensée systémique-------------->
+    
+
+<div class="col-md-12 grid-margin stretch-card" id="div14">
+  <div class="card">
+    <div class="card-body">
+
+       <h4 class="card-title">{% trans 'Pensée systémique' %}</h4>
+       <p class="card-description">
+         <string ></string>{% trans 'Capacité à relever les défis de manière globale et à examiner les liens et les interactions entre tous les éléments qui le composent' %}  
+       </p>
+      <!-----------<button onclick="toggleClock()" id="clockButton">Show clock</button> ---------------> 
+       <form method="POST">       
+         {% load crispy_forms_tags %}
+       
+         {% csrf_token %}
+        
+    
+       <div class="form-group row">
+        <div class="col">
+          
+          <label> <strong>{% trans 'Concevoir et mettre en œuvre des stratégies pour gérer la complexité, la pensée anticipative, et la culture du changement :' %}</strong></label>
+          <div id="the-basics">
+            {{form.pensee_1}}
+          </div>
+        </div>
+
+      </div>               
+             
+          
+    <button type="submit" class="btn btn-primary mr-2">Envoyer vos réponses </button>
+    </form>
+    
+    </div>         
+  </div>
+</div>
+
+
+
+
+
+
+
+
+          
+    
+          
+
+          
+          
+          </div>
+          
+
+
+
+
+
+ 
+
+
+<!--------Métodologia------------->
+
+
+
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  ERPI <a href="" target="_blank">All rights reserved.</span>
+      
+          </div>
+        
+        </footer> 
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>   
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="{% static 'dash/vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'dash/vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'dash/vendors/datatables.net/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'dash/vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'dash/js/dataTables.select.min.js' %}"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'dash/js/off-canvas.js' %}"></script>
+  <script src="{% static 'dash/js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'dash/js/template.js' %}"></script>
+  <script src="{% static 'dash/js/settings.js' %}"></script>
+  <script src="{% static 'dash/js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'dash/js/dashboard.js' %}"></script>
+  <script src="{% static 'dash/js/Chart.roundedBarCharts.js' %}"></script>
+  <!-- End custom js for this page-->
+
+  <script>
+ function toggleClock() {
+    // get the clock
+    var myClock = document.getElementById('clock');
+
+    // get the current value of the clock's display property
+    var displaySetting = myClock.style.display;
+
+    // also get the clock button, so we can change what it says
+    var clockButton = document.getElementById('clockButton');
+
+    // now toggle the clock and the button text, depending on current state
+    if (displaySetting == 'block') {
+      // clock is visible. hide it
+      myClock.style.display = 'none';
+      // change button text
+      clockButton.innerHTML = 'Show clock';
+    }
+    else {
+      // clock is hidden. show it
+      myClock.style.display = 'block';
+      // change button text
+      clockButton.innerHTML = 'Hide clock';
+    }
+  }
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

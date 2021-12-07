@@ -1,0 +1,572 @@
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Climatelabs CLT</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'dash/vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'dash/vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'dash/vendors/css/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'dash/vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'dash/vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'dash/js/select.dataTables.min.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'dash/css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'dash/favicon.png' %}" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="{% static 'dash/logo.svg' %}" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'dash/logo-mini.svg' %}" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+         
+          <li class="nav-item nav-profile dropdown">
+        
+          
+          </li>
+          <li class="nav-item nav-settings d-none d-lg-flex">
+            <a class="nav-link" href="#">
+              <i class="icon-ellipsis"></i>
+            </a>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      <div class="theme-setting-wrapper">
+        <div id="settings-trigger"><i class="ti-settings"></i></div>
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close ti-close"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles default"></div>
+          </div>
+        </div>
+      </div>
+      <div id="right-sidebar" class="settings-panel">
+        <i class="settings-close ti-close"></i>
+        <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="setting-content">
+          <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel" aria-labelledby="todo-section">
+            <div class="add-items d-flex px-3 mb-0">
+              <form class="form w-100">
+                <div class="form-group d-flex">
+                  <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
+                  <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add</button>
+                </div>
+              </form>
+            </div>
+            <div class="list-wrapper px-3">
+              <ul class="d-flex flex-column-reverse todo-list">
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Team review meeting at 3.00 PM
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Prepare for presentation
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Resolve all the low priority tickets due today
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li class="completed">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox" checked>
+                      Schedule meeting for next week
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li class="completed">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox" checked>
+                      Project review
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+              </ul>
+            </div>
+            <h4 class="px-3 text-muted mt-5 font-weight-light mb-0">Events</h4>
+            <div class="events pt-4 px-3">
+              <div class="wrapper d-flex mb-2">
+                <i class="ti-control-record text-primary mr-2"></i>
+                <span>Feb 11 2018</span>
+              </div>
+              <p class="mb-0 font-weight-thin text-gray">Creating component page build a js</p>
+              <p class="text-gray mb-0">The total number of sessions</p>
+            </div>
+            <div class="events pt-4 px-3">
+              <div class="wrapper d-flex mb-2">
+                <i class="ti-control-record text-primary mr-2"></i>
+                <span>Feb 7 2018</span>
+              </div>
+              <p class="mb-0 font-weight-thin text-gray">Meeting with Alisa</p>
+              <p class="text-gray mb-0 ">Call Sarah Graves</p>
+            </div>
+          </div>
+          <!-- To do section tab ends -->
+          <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
+            <div class="d-flex align-items-center justify-content-between border-bottom">
+              <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
+              <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See All</small>
+            </div>
+            <ul class="chat-list">
+              <li class="list active">
+                <div class="profile"><img src="{% static 'dash/faces/face1.jpg' %}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Thomas Douglas</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">19 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'dash/faces/face2.jpg' %}" alt="image"><span class="offline"></span></div>
+                <div class="info">
+                  <div class="wrapper d-flex">
+                    <p>Catherine</p>
+                  </div>
+                  <p>Away</p>
+                </div>
+                <div class="badge badge-success badge-pill my-auto mx-2">4</div>
+                <small class="text-muted my-auto">23 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'dash/faces/face3.jpg' %}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Daniel Russell</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">14 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'dash/faces/face4.jpg' %}" alt="image"><span class="offline"></span></div>
+                <div class="info">
+                  <p>James Richardson</p>
+                  <p>Away</p>
+                </div>
+                <small class="text-muted my-auto">2 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'dash/faces/face5.jpg' %}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Madeline Kennedy</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">5 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'dash/faces/face6.jpg' %}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Sarah Graves</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">47 min</small>
+              </li>
+            </ul>
+          </div>
+          <!-- chat tab ends -->
+        </div>
+      </div>
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Evaluation</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'profile' %}">New evaluation </a></li>
+                <li class="nav-item"> <a class="nav-link" href=""> Join an evaluation</a></li>
+          
+              </ul>
+            </div>
+          </li>
+       
+
+          <li class="nav-item">
+            <a class="nav-link" href="pages/documentation/documentation.html">
+              <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">Documentation</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">{% trans ' Welcome to Climatelabs CLT' %}</h3>
+                  <h6 class="font-weight-normal mb-0"><span class="text-primary"> Climatelabs:</span> Competencias para Changemaker Leader teams </h6>
+                </div>
+                <div class="col-12 col-xl-4">
+                 <div class="justify-content-end d-flex">
+                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                    <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                     <i class="mdi mdi-calendar"></i> Langues
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                      <a class="dropdown-item" href="#">Français</a>
+                      <a class="dropdown-item" href="#">Anglais</a>
+                      <a class="dropdown-item" href="#">Espagnol</a>
+                    
+                    </div>
+                  </div>
+                 </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+
+
+
+
+
+<!----------------add-->
+
+<!------------------------intro-->
+
+<div class="row">
+
+
+
+
+
+  <div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        
+     
+        <p class="card-title">{% trans 'Objetivo' %}</p>
+        <p class="font-weight-500" style="text-align: justify;">Este documento es una herramienta de discusion que permita a cada Universidad identificar capacidades con respecto a los Roles importantes que deben ser considerados a lo largo del proyecto de Climatelabs.</p>
+        <div class="d-flex flex-wrap mb-5">
+          <div class="mr-5 mt-3">
+            <p class="text-muted" style="text-align: justify;">Disclaimer : En ningún momento se pretender evaluar o comparar las competencias individuales de cada participante. Por el contrario, este primer resultado permite dar primer posicionamiento de cada individuo en algun(os) rol(es) propuestos para el proyecto. </p>
+            <h3 class="text-primary fs-30 font-weight-medium"></h3>
+            
+          </div>
+
+        </div>
+     
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-md-6 grid-margin transparent">
+      <div class="row">
+        <div class="col-md-6 mb-4 stretch-card transparent">
+          <div class="card card-tale">
+            <div class="card-body">
+              <h4 class="mb-4"> Visionarios </h4>
+              <p>Quienquiera que venga con una idea normalmente necesita apoyo para hacerla realidad.... </p>
+              <a  style="color: rgb(250, 248, 245);"  href="#1" class="mb-4">Learn More</a>
+            
+         
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4 stretch-card transparent">
+          <div class="card card-dark-blue">
+            <div class="card-body">
+              <h4 class="mb-4"> Makers</h4>
+              <p>Quienquiera que venga con una idea normalmente necesita apoyo para hacerla realidad..... </p>
+              <a style="color: rgb(250, 248, 245);"  href="#1" class="mb-4">Learn More</a>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+          <div class="card card-light-blue">
+            <div class="card-body">
+              <h4 class="mb-4"> Facilitadores</h4>
+              <p>Este es probablemente el papel que más distingue a un equipo de laboratorio de innovación.... </p>
+              <a style="color: rgb(250, 248, 245);"  href="#1" class="mb-4">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 stretch-card transparent">
+          <div class="card card-light-danger">
+            <div class="card-body">
+              <h4 class="mb-4"> Managers  </h4>
+              <p>Las iniciativas de laboratorio de innovación pueden ser vistas a menudo como difusas y accesorias. ... </p>
+              <a style="color: rgb(250, 248, 245);"  href="#1" class="mb-4">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!---------------------------->
+
+
+
+
+<!------------------------intro-->
+
+<div class="row">
+
+ 
+<div class="col-md-6 grid-margin transparent">
+    <img style="width: 100%;" src="{% static 'Social/social_2.JPG' %}" alt="image" class="responsive">
+</div>
+
+  
+  </div>
+
+<!------------------------------------------------------>
+      
+          <div class="row" id ="1">
+            <div class="col-md-4 stretch-card grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title mb-0"> Visionarios — Aquellos que Impulsan y Conectan</p>
+                 
+
+                 <p style="text-align: justify;">Dentro de los equipos de innovación, a menudo se puede encontrar un cierto tipo de persona que siempre encuentra una oportunidad donde nadie más la ve. Estas mismas personas también crean redes de personas fácilmente. Tienen un talento inherente para comunicar sus ideas mientras que también se mantienen empáticos y sensibles con los demás. Su particular mentalidad emprendedora les hace avanzar buscando alcanzar su visión del futuro y sus creencias. </p>
+                  <ul>¿Qué puede esperar de los visionarios de su equipo?
+                  
+                    <li>Proporcionar un flujo constante de ideas y oportunidades de proyectos para su laboratorio</li>  
+                     <li>Construir conexiones con las comunidades y las partes interesadas de proyecto para establecer vínculos estratégicos entre su laboratorio, la universidad y el territorio</li> 
+                     <li>Crear una conexión emocional con la gente alrededor del laboratorio comunicando historias convincentes de cada proyecto, evento, éxito o fracaso</li> 
+                     <li>Salir y encontrar las oportunidades para su laboratorio, ya sean nuevas alianzas, opciones de financiación o escenarios de exhibición.</li>  
+                    </ul>
+                  
+                </div>
+                <div class="card-body">
+                  <p class="card-title mb-0"> Makers — Los que hacen que las cosas pasen</p>
+                 
+
+                 <p style="text-align: justify;">Quienquiera que venga con una idea normalmente necesita apoyo para hacerla realidad. Los Makers reúnen un conjunto diverso de habilidades que son instrumentales para entender cada necesidad y hacer un prototipo de cualquier solución. No dudan en ser inter-disciplinarios o ir al campo para entender el problema. Brillan por combinar ideas e impulsar conceptos innovadores. Los Makers son impulsados por la experimentación, iterando a través de prototipos elaborados con tecnologías disponibles. Reconocer la complejidad de cada problema de manera sistémica es parte de su forma de ver el mundo.</p> 
+                  <ul>¿Qué puede esperar de los Makers de su equipo?
+                  
+                    <li>Comprender las necesidades y los problemas mediante la combinación de múltiples métodos y entornos de investigación</li>  
+                    <li>Capturar ideas, datos y cualquier forma de conocimiento, re-estructurarlos y proponer soluciones conceptuales novedosas</li> 
+                    <li>Ayudar a construir representaciones físicas (y digitales) de soluciones de forma iterativas</li>
+                    <li>Proponer alternativas para abordar la complejidad de cada problema y el impacto sistémico de cada solución</li> 
+                    </ul>
+                  
+                  
+                  
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 stretch-card grid-margin">
+              <div class="row">
+                <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
+                  <div class="card data-icon-card-primary">
+                    <div class="card-body">
+                      <p class="card-title text-white">Roles ClimateLabs</p>                      
+                      <div class="row">
+                        <div class="col-8 text-white">
+                          
+                          <p class="text-white font-weight-500 mb-0" style="text-align: justify;">Los roles del equipo de Climate Lab tienen como objetivo establecer una base mínima de características que cada Universidad deberá cubrir. Estos roles se basan en la literatura bibliográfica sobre Innovación Social, Laboratorios de Innovación, Living Labs y Roles en Innovación.
+
+                            En primer lugar, es probable que se necesiten varios miembros del equipo para cada función, ya que una persona no necesariamente reúne todas las características propuestas. Por lo tanto, si no se ve a sí mismo (o a alguien más) totalmente ajustado a la descripción de un rol, está bien. No obstante, también es posible que una persona pueda desempeñar (total o parcialmente) más de una. </p>
+                        </div>
+                        <div class="col-4 background-icon">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               
+                
+              </div>
+            </div>
+            <div class="col-md-4 stretch-card grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title mb-0"> Facilitadores — Los que ponen el tempo y orquestran la colaboración entre las personas</p>
+                 
+
+                 <p style="text-align: justify;">Este es probablemente el papel que más distingue a un equipo de laboratorio de innovación. Los facilitadores son los que establecen el ritmo metodológico de los proyectos dentro del laboratorio. Ellos saben qué estrategia, herramienta o dinámica se podria utilizar cuando se necesita una divergencia, convergencia o simplemente una retrospectiva. Hacen que la gente se involucre y buscan la colaboración en cada actividad. Cuando las intenciones y los intereses chocan, los facilitadores mantienen a todos enfocados en el propósito mayor. Ninguna colaboración es posible bajo la discriminación y/o la exclusión, por lo que la inclusión intercultural y transdisciplinaria es una directriz primordial para ellos .</p> 
+                  
+                 <ul>¿Qué puede esperar de los facilitadores de su equipo?
+                   <li>Diseñar estrategias, métodos e instrumentos para orientar el proceso de innovación a través de cada proyecto</li>
+                   <li>Proporcionar orientación y tutoría para estimular el desarrollo profesional y personal de los equipos y participantes en el proyecto</li>
+                   <li>Involucrar a la gente y fomentar la colaboración en cada actividad del laboratorio</li>
+                   <li>Actuar como agentes para mantener la paz en caso de conflicto, manteniendo siempre en vista los objetivos globales</li>
+                    <li>Asegurar la inclusión intercultural en todos los proyectos o actividades del laboratorio</li>
+
+                 </ul>
+                  
+                      
+                      
+                      
+                     
+                      
+                  
+                 
+                  
+                  
+                </div>
+                <div class="card-body">
+                  <p class="card-title mb-0"> Managers – Los que mantienen todo en orden</p>
+                 
+
+                 <p style="text-align: justify;">Las iniciativas de laboratorio de innovación pueden ser vistas a menudo como difusas y accesorias. Los Managers están destinados a organizar, dar sentido y valorar todo lo que sucede en un laboratorio. Acostumbrados a lidiar con condiciones inciertas, los Managers de laboratorio son excepcionalmente hábiles en el manejo de proyectos de innovación. Llevan la cuenta de todo, detectando patrones de lo que funciona y lo que no. Su capacidad para observar las métricas y los resultados les permite tender puentes con sus homólogos de otras instituciones para defender el papel del laboratorio en su ecosistema. Los Managers del laboratorio son capaces de tomar decisiones, lo cual es clave en los contextos altamente complejos en los que el laboratorio opera normalmente.</p>
+                  
+                 <ul> ¿Qué puede esperar de los Managers de su equipo?
+                  
+                      <li>los asuntos técnicos, financieros y legales del laboratorio y sus proyectos</li> 
+                      <li> Contribuir a la planificación de proyectos manteniendo el equilibrio entre las soluciones visionarias y los objetivos alcanzables</li>
+                      <li> Aplicar mecanismos de vigilancia y evaluación para seguir la evolución del laboratorio y comunicar los resultados</li>
+                      <li>Tienen una fuerte creencia en sí mismos que les ayuda a tomar decisiones para la sostenibilidad del laboratorio y su ecosistema.</li>
+                     
+                     
+                      
+                    </ul> 
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  ERPI <a href="" target="_blank">All rights reserved.</span>
+      
+          </div>
+        
+        </footer> 
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>   
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="{% static 'dash/vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'dash/vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'dash/vendors/datatables.net/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'dash/vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'dash/js/dataTables.select.min.js' %}"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'dash/js/off-canvas.js' %}"></script>
+  <script src="{% static 'dash/js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'dash/js/template.js' %}"></script>
+  <script src="{% static 'dash/js/settings.js' %}"></script>
+  <script src="{% static 'dash/js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'dash/js/dashboard.js' %}"></script>
+  <script src="{% static 'dash/js/Chart.roundedBarCharts.js' %}"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>
+

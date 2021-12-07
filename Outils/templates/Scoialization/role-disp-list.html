@@ -1,0 +1,31 @@
+
+
+                    
+                        {% if messages %}
+                        <ul class="messages" hx-get="{% url 'clear' %}" hx-trigger="load delay:3">
+                            {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    
+                        {% if roles %}
+                        
+                            {% csrf_token %}
+                            <form class="sortable list-group" hx-trigger="end" hx-post="{% url 'sort' %}" hx-target="#role-list">
+                            
+                                {% for role in roles %}
+                                <div>
+                                    <input type="hidden" name="role_order" value="{{ role.pk }}" />
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                       # {{ role.order }}  {{ role.role.name }}
+                               
+                                    </li>
+                                </div>
+                            {% endfor %}
+                            </form>
+                        {% else %}
+                            <p>You do not have any roles in your list</p>
+                        {% endif %}
+      
+

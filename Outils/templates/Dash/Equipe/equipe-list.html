@@ -1,0 +1,36 @@
+
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+                    
+                        {% if messages %}
+                        <ul class="messages" hx-get="{% url 'clear' %}" hx-trigger="load delay:3s">
+                            {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    
+                        {% if equipes %}
+                        
+                            {% csrf_token %}
+                            <form  hx-trigger="" hx-post="" hx-target="#equipe-list">
+                            
+                                {% for  equipe in equipes %}
+                                <div>
+                                    <input type="hidden" name="equipe_pk" value="{{ equipe.pk }}" />
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                         {{ equipe.name }} <a href="{% url 'profile'  equipe.pk %}" class="btn btn-success btn-sm">{% trans 'Join the team' %}</a>
+                                       
+                                    </li>
+                                </div>
+                            {% endfor %}
+                            </form>
+                        {% else %}
+                            <p>You should select your Team</p>
+                        {% endif %}
+      
+
+
+                        
